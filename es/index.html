@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mestizen Studio — Creativity Without Borders</title>
+  <title>Mestizen Studio — Estudio de Diseño Multidisciplinar</title>
   <link rel="icon" type="image/x-icon" href="../assets/favicon.svg">
   <!-- Alternate language versions -->
-  <link rel="alternate" hreflang="en" href="https://mestizen.com/mestizen" />
-  <link rel="alternate" hreflang="es" href="https://mestizen.com/mestizen/es/" />
+  <link rel="alternate" hreflang="en" href="https://mestizen.studio/" />
+  <link rel="alternate" hreflang="es" href="https://mestizen.studio/es/" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- Shared styles — same file as EN -->
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
@@ -27,14 +29,14 @@
 <nav id="mainNav">
   <div class="nav-logo"></div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#manifesto">Manifesto</a></li>
+    <li><a href="#about">Sobre nosotros</a></li>
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#work">Proyectos</a></li>
+    <li><a href="#manifesto">Manifiesto</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <a href="es/index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">ES</a>
-    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Let's Talk →</button>
+    <a href="../index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">EN</a>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Hablemos →</button>
   </div>
 </nav>
 
@@ -50,23 +52,25 @@
   <svg class="float-shape" id="floatBlob3" style="top:52%; left:2%; width:120px; opacity:0.14" viewBox="0 0 247.18 258.37" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M140.06,11.01c25.64,2.43,67.27,22.17,66.61,52.32-.18,8.26-6.22,20.13-10.8,26.98-5.05,7.55-22.29,22.26-21.78,30.12.1,1.62,2.54,6.37,3.96,7.07,8.55,4.16,22.81-12.47,27.43-18.58,12.58-16.65,21.29-38.66,8.58-57.91.75-.73,6.04,3.65,7.01,4.48,17.59,14.99,25.52,38.17,23.97,61-.31,4.57-2.25,9.25-2.06,14.03.21,5.06,3.38,10.6,3.95,16.11,2.85,27.36-20.22,63.06-45.35,73.41-2.3.95-16.52,4.44-16.51,5.47l12.57,20.46c-4.33,8.23-5.13-.16-10.58-.97l-1,3.01-9.51-17.97c-17.57,25.37-63.27,36.2-90.17,22.15-9.33-4.87-15.92-13.62-24.61-19.39-6.96-4.62-14.62-7.27-21.65-12.35-7.56-5.47-15.04-14.48-19.09-22.91l17.65,9.35c16.97,9.21,60.19,12.48,69.53-8.18,2.29-5.06,2.93-17.58-4.43-16.53-3.33.47-15.9,8.07-21.21,9.9-19.73,6.77-58.89,11.35-69.31-11.76-2.99-6.64-6.51-19.42-8.98-27.02C-.02,139.94-1.9,128.78,2.56,115c2.26,3.55,2.51,7.64,4.48,11.52,10.28,20.28,44.41,30.27,64.82,21.76,13.81-5.76,16.62-22.71-.25-24.33-17.58-1.68-27.9,4.34-46.77-4.23-12.2-5.54-19.48-11.65-17.51-25.98,2.16-15.66,9.37-30.33,17.33-43.67,9.38-15.74,24.56-31.21,25.42-50.08,7.84,2.83,16.13,5.34,24.51,5.98,12.32.94,26.82-2.32,38.01-1.01,10.38,1.22,19.13,23.27,19.27,32.53.15,9.79-8.95,27.3-3.82,35.03,4.04,6.09,15.51-1.99,19.01-6.05,14.65-16.99,10.28-42.3-6.98-55.47ZM91.77,47.72c5.64-5.01,3.6-23.45-.82-29.11-6.25-8.02-8.07,11.04-7.91,14.84.15,3.59,3.25,19.13,8.72,14.27ZM39.62,72.44c6.67,7.01,17.36,12.31,26.82,7.43,3.62-1.87,6.41-7.11,4.13-10.89-2.03-3.37-17.11-5.06-21.51-6.48-9.51-3.08-12.97-9.2-19.99-15.5,1.22,9.87,3.58,18.13,10.55,25.45ZM123.78,83.2c-9.29,2.1-9.28,21.81-2.16,22.83,11.88,1.69,15.03-25.74,2.16-22.83ZM115.79,141.74c3.35-3.54-.52-10.64-4.45-12.52-6.48-3.09-19.71-3.89-16.8,6.81,2.22,8.18,16.3,10.95,21.26,5.71ZM162.58,136.48c-14.69-.45-18.88,24.39-5.14,23.48,12.58-.83,16.16-23.15,5.14-23.48ZM188.37,181.31c-3.53,3.15-2.97,7.06,2.15,7.74,18.4,2.43,43.02-32.16,35.53-50.05-1.31-.97-6.06,11.29-6.82,12.67M126.3,177.24c-4.39,4.39-3.44,22.87,7.81,19.32,12.38-3.9-.23-26.9-7.81-19.32ZM97.32,234.74c6.65,6.8,29.17,1.68,32.99-7,3.65-8.31-7.62-7.18-12.73-6.72-4.67.42-20.85,5.67-21.24,10.62-.03,1.08.22,2.33.98,3.1Z"/></g></svg>
   <svg class="float-shape" id="floatLeaf2" style="bottom:10%; right:12%; width:130px; opacity:0.16" viewBox="0 0 268.14 283.06" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M177.47,130.11c11.53,9.32,25.76,15.19,37.74,23.73.71.5,1.7-.22,1.22,1.71l-74.17,81.32-32.79-13.76,27,18.53-22.98,24-44.02-19.52c11.69,8.84,25.44,14.87,37.71,22.75.97.63,1.79-.1,1.28,2.22-19.8,12.54-42.93,9.41-63.2-.27-2.76-1.32-14.78-9-16.19-8.79l-17.72,20.94c-6.37,1.08-6.09-7.9-4.36-11.85.18-.41,4.93-5.69,5.86-6.71.48-.53,2-1.81,3.27-3.16,1.57-1.67,3.51-3.07,4.86-5.14.81,3.32,3.01,2.91,2.51-.5-7.89-8.25-15.69-20.71-19.48-31.54-8.87-25.39-3.02-46.79,17.44-63.96l26.01,39-22.23-40.3-.3-3.66,38.04-43.03,24.49,41.99c-.04-2.84-1.52-5.39-2.52-7.96-4.33-11.13-12.32-24.53-15.52-35.5-.44-1.52-1.29-2.89-.54-4.55,21.93-25.64,45.97-49.44,70.58-72.52l2.49.58,30.04,41.96-25.45-48.36c14.65-12.29,32.74-24.01,51.93-26.18l18.52,32.56c1.18-.05.28-3.1.01-4.02-1.08-3.68-12.71-28.92-11.51-29.98,25.72-1.56,49.76,13.54,58.74,37.75,12.23,32.96-6.33,64.29-25.35,90.13-3.6,4.89-12.38,17.28-16.37,20.7-.64.55-1.04,1.41-2.06.98l-42.97-19.56Z"/></g></svg>
 
-  <div class="hero-eyebrow" id="heroEyebrow">Creative Studio · Berlin & Everywhere</div>
+
+  <div class="hero-eyebrow" id="heroEyebrow">Estudio de Diseño Multidisciplinar · Berlín & Global</div>
 
   <h1 class="hero-headline" id="heroHeadline">
-    Design from<br>
-    <span class="accent">every</span> angle.
+    Diseño desde<br>
+    <span class="accent">todos</span><br>
+    los ángulos.
   </h1>
 
   <p class="hero-sub" id="heroSub">
-    We connect brand strategy, product design, and digital execution, so your business doesn't just look good. It performs.
+    Conectamos estrategia de marca, diseño de producto y ejecución digital, para que tu negocio no solo se vea bien. Que funcione.
   </p>
 
   <div class="hero-actions" id="heroActions">
     <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
-      🚀 Start a Project
+      🚀 Iniciar un proyecto
     </button>
     <button class="btn-ghost" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
-      See our work
+      Ver nuestro trabajo
     </button>
   </div>
 
@@ -80,22 +84,21 @@
 <div class="marquee-wrapper">
   <div class="marquee-track" id="marquee">
     <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
-    <span class="marquee-item">UX/UI Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Diseño UX/UI <span class="marquee-dot"></span></span>
     <span class="marquee-item">Webflow <span class="marquee-dot"></span></span>
     <span class="marquee-item">Shopify <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Strategy <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Product Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Estrategia <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Diseño de Producto <span class="marquee-dot"></span></span>
     <span class="marquee-item">Ecommerce <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Creative Direction <span class="marquee-dot"></span></span>
-    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Dirección Creativa <span class="marquee-dot"></span></span>
     <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
-    <span class="marquee-item">UX/UI Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Diseño UX/UI <span class="marquee-dot"></span></span>
     <span class="marquee-item">Webflow <span class="marquee-dot"></span></span>
     <span class="marquee-item">Shopify <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Strategy <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Product Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Estrategia <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Diseño de Producto <span class="marquee-dot"></span></span>
     <span class="marquee-item">Ecommerce <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Creative Direction <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Dirección Creativa <span class="marquee-dot"></span></span>
   </div>
 </div>
 
@@ -106,34 +109,33 @@
       <div class="big-letter">M</div>
       <svg width="100%" style="opacity:0.5; margin-bottom:1rem" viewBox="0 0 265.99 270.83" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M108,19.5c.53-5.52,2.76-15.61,6.99-19.5,5.52,9.82,9.23,20.41,10.88,31.63.88,5.97.7,11.9,1.26,17.74.11,1.12.46,5.5,1.86,5.62,1.41-16.05,5.13-35.75,14.18-49.33.72-1.08,3.01-4.66,4.34-2.67,7.34,20.51.96,40.5-2.26,60.76-.17,1.06-1.06,3.48.74,3.24,7.19-20.49,17.14-41.81,34-55.99,1.32,21.68-8.24,41.45-15.98,61,13.04-16.56,25.16-35.84,44.99-44.99-1.3,6.44-3.25,12.63-5.82,18.67-2.86,6.73-7.19,12.69-10.16,19.33,11.18-7.67,22.21-19.9,35.51-23.98,3.4-1.04-1.57,8.69-2.15,9.86-7.36,14.81-17.19,23.49-27.37,35.62-.94,1.12-2.43,1.63-1.99,3.5,15.35-10.41,33.67-22.86,52.24-26.26.76-.14,2.6-1.75,1.74.74-.7,2.03-7.58,10.39-9.47,12.53-10.31,11.69-23.51,20.22-35.51,29.98,18.47-8.18,37.32-17.36,58-17.98-4.06,7.9-12.41,12.01-18.67,17.82l-33.33,19.16c17.66-4.16,35.7-9.44,53.99-5.98-17.04,17.99-44.55,23.69-67.99,29-.27,1.66,2.42,1.07,3.53,1.03,2.85-.1,5.28-.99,7.92-1.09,15.59-.58,32.51-.96,46.54,6.54-6.41,5.57-15.77,8.39-23.96,10.04-23.46,4.74-50.21,2.18-74.03,1.48l73.09,100.52c-9.14,6.88-7,1.64-10.42-3.21-5.37-7.61-12.65-15.13-15.71-24.3l-1.81.85c-2.21-7.57-11.21-12.57-10.15-20.87-5.41,2.04-3.83-2.15-5.05-4.18-2.41-4.02-7.02-7.85-9.34-11.91-5.65-9.88-13.78-19.19-20.42-29.58-1.02-1.6-1.93-3.42-2.19-5.32-1.34.11-1.62,1.43-2.05,2.44-3.41,8.1-5.57,20.37-8.67,29.33-7.09,20.49-15.91,45.54-34.27,58.23v-15.5c0-2.3,3.09-12.99,3.98-16.02,2.39-8.06,6.62-15.45,9.01-23.48-8.12,9.84-14.09,21.36-22.48,31.01-4.33,4.98-19.15,19.75-25,21-1.6.34-1.58.11-1.33-1.32,1.66-9.33,6.27-19.91,10.81-28.21,3.64-6.65,8.91-12.52,12-19.49-14.09,12.61-29.57,28.78-47.31,36.18-.94.39-5.57,3.01-4.66.34,2.99-8.76,10.8-17.52,15.57-25.44l19.41-22.08-28.95,18.54c-8.5,3.54-16.76,8.28-26.04,9.44,5.01-9.09,12.17-16.7,19.47-24.02l23.52-18.96c-10.21,3.29-19.61,8.55-30,11.49-8.49,2.4-17.18,3.9-25.99,4.5-1.92-1.86,8.02-10.49,9.79-11.94,2.51-2.07,5.42-3.72,7.9-5.86l17.31-10.18c-12.06,1.36-24.1,5.15-36.37,3.87-.92-.1-7.51-.69-5.62-2.86l18.62-11.89,38.37-14.12c-21.01.99-43.04,3.55-62.99-4.51,7.03-5.26,15.73-7.73,24.18-9.82l39.81-5.67c-15.42-1.4-31.56-3.66-45.98-9.53-5.67-2.31-12.59-5.26-16.02-10.47,18.91-5.75,38.05-2.55,56.99.98l-20.87-9.61c-8.56-4.44-19.75-11.7-25.63-19.37-.77-1.01-1.93-1.26-1.49-3.01h14.5c3.04,0,14.73,3.51,18.28,4.72,5.46,1.86,10.31,5.59,16.22,6.27-7.71-7.13-16.26-13.4-22.97-21.52-2.09-2.52-12.05-15.74-10.02-18.47,19.77,4.11,34.58,16.94,49.98,29l-18.51-26.98c-4.32-8.75-9.45-18.04-9.48-28.01,1.91-2.02,16.97,10.46,19.02,12.47l23.96,31.52c-1.94-7.22-5.23-14.02-7.25-21.23-.79-2.82-3.74-12.26-3.74-14.26V6c4.85,1.18,9.99,8.46,12.81,12.69,6.53,9.79,10.73,21.13,14.2,32.3,2.46,0-.01-2.94-.01-3.49,0-8.78-.81-19.53,0-28Z"/></g></svg>
       <div style="position:relative;z-index:1">
-        <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.3rem">Founded in</div>
+        <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.3rem">Fundado en</div>
         <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:800">2024</div>
       </div>
     </div>
     <div class="about-card accent-card">
-      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(26,26,46,0.6);margin-bottom:0.5rem">Cultures mixed</div>
-      <div class="stat">∞</div>
-      <p style="font-size:0.85rem;margin-top:0.5rem;color:rgba(26,26,46,0.7)">Diversity is our core stack.</p>
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(26,26,46,0.6);margin-bottom:0.5rem">Disciplinas conectadas</div>
+      <div class="stat">5+</div>
+      <p style="font-size:0.85rem;margin-top:0.5rem;color:rgba(26,26,46,0.7)">Marca. Producto. Digital. Un estudio.</p>
     </div>
   </div>
 
   <div class="about-body" data-reveal>
-    <div class="section-label">About</div>
-    <h2 class="section-title" style="color:var(--dark)">Strategy, brand,<br>and product<br>connected.</h2>
+    <div class="section-label">Sobre nosotros</div>
+    <h2 class="section-title" style="color:var(--dark)">Estrategia, marca<br>y producto,<br>conectados.</h2>
     <div style="margin-top:2rem">
       <p>
-        <strong>Mestizen Studio</strong> is a multidisciplinary design studio based in Berlin. We work across brand identity, UX/UI, web development, and ecommerce, approaching every problem from multiple angles, not a single playbook.
+        <strong>Mestizen Studio</strong> es un estudio de diseño multidisciplinar con base en Berlín. Trabajamos en identidad de marca, UX/UI, desarrollo web y ecommerce, abordando cada problema desde múltiples ángulos, no desde un único manual.
       </p>
       <p>
-        We partner with startups, scale-ups, and entrepreneurs who need more than a visual refresh. They need <strong>design that connects strategy to execution</strong>, and delivers real business results.
+        Trabajamos con startups, empresas en crecimiento y emprendedores que necesitan más que un rediseño visual. Necesitan <strong>diseño que conecte estrategia con ejecución</strong>, y que genere resultados reales.
       </p>
-
     </div>
     <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem">
-      <span class="about-pill">⚡ Multidisciplinary</span>
-      <span class="about-pill">🎯 Strategy-led</span>
-      <span class="about-pill">🌐 Berlin & Global</span>
-      <span class="about-pill">🔧 End-to-end</span>
+      <span class="about-pill">⚡ Multidisciplinar</span>
+      <span class="about-pill">🎯 Estratégico</span>
+      <span class="about-pill">🌐 Berlín & Global</span>
+      <span class="about-pill">🔧 De principio a fin</span>
     </div>
   </div>
 </section>
@@ -142,52 +144,52 @@
 <section id="services">
   <div class="services-header">
     <div>
-      <div class="section-label">What we do</div>
-      <h2 class="section-title">End-to-end design.<br>Real business results.</h2>
+      <div class="section-label">Qué hacemos</div>
+      <h2 class="section-title">Diseño integral.<br>Resultados reales.</h2>
     </div>
     <button class="btn-ghost" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
-      Start a project →
+      Iniciar un proyecto →
     </button>
   </div>
 
   <div class="services-grid">
     <div class="service-card" data-reveal>
       <div class="service-icon">🔥</div>
-      <h3>Brand Identity & Strategy</h3>
-      <p>A brand is more than a logo, it's how you compete. We build sharp, scalable identity systems that differentiate you from day one: naming, positioning, visual language, and tone of voice.</p>
-      <div class="service-tag">Brand · Visual Identity · Naming</div>
+      <h3>Identidad de Marca & Estrategia</h3>
+      <p>Una marca es más que un logo, es cómo compites. Construimos sistemas de identidad sólidos y escalables que te diferencian desde el primer día: naming, posicionamiento, lenguaje visual y tono de voz.</p>
+      <div class="service-tag">Estrategia de Marca · Identidad Visual · Naming</div>
     </div>
     <div class="service-card" data-reveal>
       <div class="service-icon">✦</div>
-      <h3>UX/UI Design</h3>
-      <p>Products that convert and retain. We design digital interfaces rooted in user research, reducing friction, building clarity, and turning first-time visitors into loyal users.</p>
-    <div class="service-tag">Product Design · Research · Prototyping</div>
+      <h3>Diseño UX/UI</h3>
+      <p>Productos que convierten y retienen. Diseñamos interfaces digitales con base en investigación de usuarios, reduciendo fricción, generando claridad y convirtiendo visitas en usuarios fieles.</p>
+      <div class="service-tag">Diseño de Producto · Investigación · Prototipado</div>
     </div>
     <div class="service-card" data-reveal>
       <div class="service-icon">🌐</div>
-      <h3>Web Design & Development</h3>
-      <p>From Webflow to custom builds. Fast, responsive, and built to convert. We don't hand over a pretty file, we ship a working product that drives measurable results from launch.</p>
-    <div class="service-tag">Webflow · Custom Front-End · CMS</div>
+      <h3>Diseño y Desarrollo Web</h3>
+      <p>Desde Webflow hasta desarrollos personalizados. Rápidos, responsive y construidos para convertir. No entregamos un archivo bonito, lanzamos un producto que genera resultados desde el primer día.</p>
+      <div class="service-tag">Webflow · Front-End · CMS</div>
     </div>
     <div class="service-card" data-reveal>
       <div class="service-icon">🛒</div>
       <h3>Ecommerce</h3>
-      <p>Shopify and WooCommerce stores engineered to sell. Designed for trust, optimised for conversion, and built to scale, without looking like every other store in your category.</p>
-    <div class="service-tag">Shopify · WooCommerce · CRO</div>
+      <p>Tiendas en Shopify y WooCommerce diseñadas para vender. Construidas para generar confianza, optimizadas para la conversión y escalables, sin parecerse a todas las demás tiendas de tu categoría.</p>
+      <div class="service-tag">Shopify · WooCommerce · CRO</div>
     </div>
     <div class="service-card" data-reveal>
       <div class="service-icon">🧠</div>
-      <h3>Strategic Design Consulting</h3>
-      <p>Before pixels, you need a plan. We audit your current design posture, identify the gaps holding you back, and map a prioritised roadmap that connects design decisions to growth.</p>
-      <div class="service-tag">Strategy · Roadmap · Audits</div>
+      <h3>Consultoría Estratégica de Diseño</h3>
+      <p>Antes de los píxeles, necesitas un plan. Auditamos tu situación actual de diseño, identificamos los cuellos de botella y trazamos una hoja de ruta que conecta las decisiones de diseño con el crecimiento.</p>
+      <div class="service-tag">Estrategia · Roadmap · Auditorías</div>
     </div>
     <div class="service-card" data-reveal style="background: rgba(0,245,160,0.05); border-color: rgba(0,245,160,0.15);">
       <div style="height:100%;display:flex;flex-direction:column;justify-content:space-between">
         <svg style="width:130px; opacity:0.35; margin-bottom:1rem" viewBox="0 0 270.33 285.6" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M157.46,43.61c1.27.78,3.2.09,4.37-.88,2.05-1.7,7.75-14.24,10.09-17.9,4.12-6.44,10.82-17.51,19.71-14.87,15.22,4.51-6.36,44.71-3.29,47.79,5.09.12,9.4-3.52,14.03-5.47,8.46-3.56,24.21-10.85,33.02-8.09,14.06,4.41-8.99,21.82-13.72,25.38-6.49,4.89-21.37,12.26-25.84,17.16-1.25,1.36-1.84,1.95-1.48,4.01,16.53-.11,32.92-7.22,49.46-8.04,27.18-1.35,22.98,10.33,4.84,21.84-20.36,12.93-43.79,17.32-64.66,27.34-6.15,2.95-18.39,11.27-3.14,10.94,22.35-.49,62.48-8.34,82.88.03,20.05,8.23-11.25,19.23-18.87,21.91-8.21,2.89-17.23,5.23-25.7,7.3-5.05,1.23-36.09,6.23-36.81,9.2-.04,2.22,2.35,2.56,3.95,3.03,14.99,4.45,34.48,1.89,50.29,8.71,21.57,9.31.92,17.21-11.01,19.47-21.86,4.14-44.24.8-66.22,3.28-.34,1.69.41,2.06,1.71,2.78,4.48,2.5,17.04,5.23,23.26,7.74,6.46,2.61,29.09,12.74,30.89,19.18,2.4,8.63-15.66,6.78-20.22,6.15-14.51-2.01-28.4-8.91-43-10.78l-1.62,2.39c3.65,4.77,20.48,22.57,16.84,28.4-14.87,3.8-34.35-8.25-45.38-17.84-7.84-6.81-12.53-15.51-19.04-21.96-.82-.82-.88-1.44-2.42-1.06l-23.33,54.85-10.68-6.85,5.99,1.99-.47-2.85c-2.9,1.79-4.08-.83-3.53-3.5.14-.66,1.67-.68,1.94-1.4,2.28-6.16,4.49-12.08,6.85-17.97.87-2.18,2.61-5.07,5.21-4.28l-.48-1.83-1.5-.65,3.48-6.6,3.5.08c-.14-3.01-1.88-5.4-.04-8.3.51-.8,2.04-.98,2.52-1.74.5-.79.08-4.13,1.54-5.44-1.22-1.97-1.63-.91-2.78-.87-24.35.88-37.64,3.05-60.44-8.94-4.88-2.57-18.46-9.94-8.5-14.92,5.37-2.68,27.88-2.57,28.7-3.8.06-.78.11-1.56-.15-2.32-1.35-4.02-34.29-21.6-40.87-28.15-2.65-2.63-9.13-10.69-6.83-14.38,3.4-5.47,31.98,6.52,37.22,9,4.69,2.22,19.04,11.68,22.12,11.89,3.85.27-1.63-6.39-2.5-7.51-13.19-16.96-32.25-31.69-41.46-51.54-6-12.93-3.9-20.27,11.54-13.54,14.96,6.53,26.25,22.88,38.7,30.52,1.82,1.12,4.03,2.18,6.24,2.03,2.44-2.42-18.09-33.46-20.52-37.97-4.86-9.03-10.24-19.82-13.5-29.5-2.19-6.51-5.25-13.58-2.87-20.4.45-.39,4.32-.27,5.41-.13,17.17,2.09,46.94,46.78,58.97,60.03,10.5,11.57,10.73,4.6,7.77-6.77-5.86-22.55-28.45-58.05-25.16-81.65.45-3.23,1.64-5.96,4.87-7.17,4.82-1.27,13.18,7.59,16.01,11.1,8.67,10.77,16.21,30.72,24.58,39.42,1.4,1.46,1.9,2.53,4.43,2.06.87-12.12-10.83-52.37-2.49-60.98,7.54-7.78,17.14,12.39,19.36,17.61,1.5,3.53,7.16,23.57,8.25,24.24Z"/></g></svg>
-        <div>
-          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">Not sure where to start?</h3>
-          <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);margin-bottom:1.5rem">Book a free 30-min discovery call. No pitch, no pressure, just a real conversation.</p>
-          <button class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.4rem" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Book a call →</button>
+      <div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">¿No sabes por dónde empezar?</h3>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);margin-bottom:1.5rem">Lo resolvemos juntos. Reserva una llamada gratuita de 30 min, sin pitch, solo una conversación real.</p>
+          <button class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.4rem" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Reservar llamada →</button>
         </div>
       </div>
     </div>
@@ -197,35 +199,36 @@
 <!-- WHY -->
 <section id="why">
   <div data-reveal>
-    <div class="section-label">Why Mestizen</div>
-    <h2 class="section-title">Broader thinking.<br>Sharper <span style="color:var(--mint)">output.</span></h2>
+    <div class="section-label">Por qué Mestizen</div>
+    <h2 class="section-title">Pensamiento más amplio.<br>Resultados más <span style="color:var(--mint)">afilados.</span></h2>
+
     <ul class="why-list">
       <li class="why-item">
         <span class="why-num">01</span>
         <div>
-          <h4>We think from multiple angles, not one playbook</h4>
-          <p>A multidisciplinary team with multicultural instincts. We spot what single-track studios miss, and bring perspectives that produce genuinely better solutions.</p>
-      </div>
+          <h4>Pensamos desde múltiples ángulos, no desde un único manual</h4>
+          <p>Un equipo multidisciplinar con instinto multicultural. Detectamos lo que los estudios de visión única pasan por alto, y aportamos perspectivas que generan soluciones genuinamente mejores.</p>
+        </div>
       </li>
       <li class="why-item">
         <span class="why-num">02</span>
         <div>
-          <h4>Strategy before aesthetics. Always.</h4>
-          <p>Beautiful things that don't perform are decoration. Every decision we make is connected to a business goal, not just a design trend.</p>
-      </div>
+          <h4>Estrategia antes que estética. Siempre.</h4>
+          <p>Lo bonito que no funciona es decoración. Cada decisión que tomamos está conectada a un objetivo de negocio, no a una tendencia de diseño.</p>
+        </div>
       </li>
       <li class="why-item">
         <span class="why-num">03</span>
         <div>
-          <h4>We're honest. Even when it's uncomfortable</h4>
-          <p>We'll tell you if your brief needs rethinking. That's not arrogance, it's what separates a real strategic partner from a yes-studio.</p>
+          <h4>Somos honestos. Aunque incomode.</h4>
+          <p>Te diremos si tu brief necesita replantearse. Eso no es arrogancia, es lo que diferencia a un socio estratégico real de un estudio que siempre dice que sí.</p>
         </div>
       </li>
       <li class="why-item">
         <span class="why-num">04</span>
         <div>
-          <h4>We build systems, not one-offs.</h4>
-          <p>Scalable design that grows with your business. Not a template dressed up with your logo, a proper system built to last.</p>
+          <h4>Construimos sistemas, no piezas sueltas.</h4>
+          <p>Diseño escalable que crece con tu negocio. No una plantilla con tu logo encima, un sistema bien construido para durar.</p>
         </div>
       </li>
     </ul>
@@ -234,10 +237,9 @@
   <div class="why-visual" data-reveal>
     <div class="why-deco"></div>
     <div class="why-deco-2"></div>
-    <!-- Tropical illustration inside card -->
     <svg style="position:absolute;top:2rem;right:2rem;width:200px;opacity:0.18" viewBox="0 0 265.99 270.83" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M108,19.5c.53-5.52,2.76-15.61,6.99-19.5,5.52,9.82,9.23,20.41,10.88,31.63.88,5.97.7,11.9,1.26,17.74.11,1.12.46,5.5,1.86,5.62,1.41-16.05,5.13-35.75,14.18-49.33.72-1.08,3.01-4.66,4.34-2.67,7.34,20.51.96,40.5-2.26,60.76-.17,1.06-1.06,3.48.74,3.24,7.19-20.49,17.14-41.81,34-55.99,1.32,21.68-8.24,41.45-15.98,61,13.04-16.56,25.16-35.84,44.99-44.99-1.3,6.44-3.25,12.63-5.82,18.67-2.86,6.73-7.19,12.69-10.16,19.33,11.18-7.67,22.21-19.9,35.51-23.98,3.4-1.04-1.57,8.69-2.15,9.86-7.36,14.81-17.19,23.49-27.37,35.62-.94,1.12-2.43,1.63-1.99,3.5,15.35-10.41,33.67-22.86,52.24-26.26.76-.14,2.6-1.75,1.74.74-.7,2.03-7.58,10.39-9.47,12.53-10.31,11.69-23.51,20.22-35.51,29.98,18.47-8.18,37.32-17.36,58-17.98-4.06,7.9-12.41,12.01-18.67,17.82l-33.33,19.16c17.66-4.16,35.7-9.44,53.99-5.98-17.04,17.99-44.55,23.69-67.99,29-.27,1.66,2.42,1.07,3.53,1.03,2.85-.1,5.28-.99,7.92-1.09,15.59-.58,32.51-.96,46.54,6.54-6.41,5.57-15.77,8.39-23.96,10.04-23.46,4.74-50.21,2.18-74.03,1.48l73.09,100.52c-9.14,6.88-7,1.64-10.42-3.21-5.37-7.61-12.65-15.13-15.71-24.3l-1.81.85c-2.21-7.57-11.21-12.57-10.15-20.87-5.41,2.04-3.83-2.15-5.05-4.18-2.41-4.02-7.02-7.85-9.34-11.91-5.65-9.88-13.78-19.19-20.42-29.58-1.02-1.6-1.93-3.42-2.19-5.32-1.34.11-1.62,1.43-2.05,2.44-3.41,8.1-5.57,20.37-8.67,29.33-7.09,20.49-15.91,45.54-34.27,58.23v-15.5c0-2.3,3.09-12.99,3.98-16.02,2.39-8.06,6.62-15.45,9.01-23.48-8.12,9.84-14.09,21.36-22.48,31.01-4.33,4.98-19.15,19.75-25,21-1.6.34-1.58.11-1.33-1.32,1.66-9.33,6.27-19.91,10.81-28.21,3.64-6.65,8.91-12.52,12-19.49-14.09,12.61-29.57,28.78-47.31,36.18-.94.39-5.57,3.01-4.66.34,2.99-8.76,10.8-17.52,15.57-25.44l19.41-22.08-28.95,18.54c-8.5,3.54-16.76,8.28-26.04,9.44,5.01-9.09,12.17-16.7,19.47-24.02l23.52-18.96c-10.21,3.29-19.61,8.55-30,11.49-8.49,2.4-17.18,3.9-25.99,4.5-1.92-1.86,8.02-10.49,9.79-11.94,2.51-2.07,5.42-3.72,7.9-5.86l17.31-10.18c-12.06,1.36-24.1,5.15-36.37,3.87-.92-.1-7.51-.69-5.62-2.86l18.62-11.89,38.37-14.12c-21.01.99-43.04,3.55-62.99-4.51,7.03-5.26,15.73-7.73,24.18-9.82l39.81-5.67c-15.42-1.4-31.56-3.66-45.98-9.53-5.67-2.31-12.59-5.26-16.02-10.47,18.91-5.75,38.05-2.55,56.99.98l-20.87-9.61c-8.56-4.44-19.75-11.7-25.63-19.37-.77-1.01-1.93-1.26-1.49-3.01h14.5c3.04,0,14.73,3.51,18.28,4.72,5.46,1.86,10.31,5.59,16.22,6.27-7.71-7.13-16.26-13.4-22.97-21.52-2.09-2.52-12.05-15.74-10.02-18.47,19.77,4.11,34.58,16.94,49.98,29l-18.51-26.98c-4.32-8.75-9.45-18.04-9.48-28.01,1.91-2.02,16.97,10.46,19.02,12.47l23.96,31.52c-1.94-7.22-5.23-14.02-7.25-21.23-.79-2.82-3.74-12.26-3.74-14.26V6c4.85,1.18,9.99,8.46,12.81,12.69,6.53,9.79,10.73,21.13,14.2,32.3,2.46,0-.01-2.94-.01-3.49,0-8.78-.81-19.53,0-28Z"/></g></svg>
     <div class="why-visual-quote">
-       "The best ideas come from the most <span>unexpected</span> combinations."
+      "Las mejores ideas vienen de las combinaciones más <span>inesperadas.</span>"
     </div>
   </div>
 </section>
@@ -245,10 +247,10 @@
 <!-- WORK -->
 <section id="work">
   <div class="work-header">
-    <div class="section-label">Selected work</div>
-    <h2 class="section-title">Strategy meets craft.<br>Here's what that <span style="color:var(--mint)">looks like.</span></h2>
+    <div class="section-label">Proyectos seleccionados</div>
+    <h2 class="section-title">Estrategia y oficio.<br>Así es como <span style="color:var(--mint)">se ve.</span></h2>
     <p style="margin-top:1rem;color:rgba(255,255,255,0.45);max-width:480px;font-size:1rem;line-height:1.65">
-       Every project starts with a problem worth solving. These are the results.
+      Cada proyecto empieza con un problema que vale la pena resolver. Estos son los resultados.
     </p>
   </div>
 
@@ -273,8 +275,8 @@
         </svg>
       </div>
       <div class="work-overlay">
-        <div class="work-cat">Brand Identity</div>
-        <div class="work-title">Full Brand System →</div>
+        <div class="work-cat">Identidad de Marca</div>
+        <div class="work-title">Sistema de Marca Completo →</div>
       </div>
     </div>
 
@@ -287,7 +289,6 @@
           <rect x="85" y="80" width="100" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
           <rect x="85" y="100" width="230" height="80" rx="6" fill="rgba(0,245,160,0.08)" stroke="rgba(0,245,160,0.15)" stroke-width="1"/>
           <rect x="85" y="192" width="60" height="10" rx="5" fill="rgba(0,245,160,0.4)"/>
-          <!-- phone mockup -->
           <rect x="270" y="120" width="80" height="140" rx="10" fill="rgba(26,26,46,0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
           <rect x="278" y="132" width="64" height="112" rx="6" fill="rgba(26,26,46,0.9)"/>
           <rect x="283" y="140" width="54" height="8" rx="4" fill="rgba(0,245,160,0.3)"/>
@@ -296,8 +297,8 @@
         </svg>
       </div>
       <div class="work-overlay">
-        <div class="work-cat">UX/UI Design</div>
-        <div class="work-title">Digital Product →</div>
+        <div class="work-cat">Diseño UX/UI</div>
+        <div class="work-title">Rediseño de Producto SaaS →</div>
       </div>
     </div>
 
@@ -314,7 +315,7 @@
       </div>
       <div class="work-overlay" style="background:linear-gradient(to top, rgba(26,26,46,0.85) 0%, transparent 60%)">
         <div class="work-cat" style="color:var(--dark)">Ecommerce</div>
-        <div class="work-title" style="color:var(--dark)">Shopify Brand Launch →</div>
+        <div class="work-title" style="color:var(--dark)">Lanzamiento en Shopify →</div>
       </div>
     </div>
 
@@ -342,56 +343,56 @@
         </svg>
       </div>
       <div class="work-overlay">
-        <div class="work-cat">Web Design</div>
-        <div class="work-title">Webflow Build →</div>
+        <div class="work-cat">Diseño Web</div>
+        <div class="work-title">Desarrollo en Webflow →</div>
       </div>
     </div>
   </div>
 
   <div class="work-cta-row">
     <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
-      Start your project →
+      Inicia tu proyecto →
     </button>
   </div>
 </section>
 
 <!-- MANIFESTO -->
 <section id="manifesto">
-  <div class="manifesto-eyebrow">The Mestizen Manifesto</div>
+  <div class="manifesto-eyebrow">El Manifiesto Mestizen</div>
 
   <ul class="manifesto-lines">
-    <li class="manifesto-line">Good design doesn't come</li>
-    <li class="manifesto-line alt">from a single point of view.</li>
-    <li class="manifesto-line" style="margin-top:1rem">It comes from questioning,</li>
-    <li class="manifesto-line alt">combining,</li>
-    <li class="manifesto-line"><em>colliding.</em></li>
-    <li class="manifesto-line" style="margin-top:1rem">We reject generic.</li>
-    <li class="manifesto-line alt">We reject safe.</li>
-    <li class="manifesto-line">We design for real businesses</li>
-    <li class="manifesto-line alt">and real people —</li>
-    <li class="manifesto-line"><em>not for portfolios.</em></li>
-    <li class="manifesto-line" style="margin-top:1rem">Strategy first.</li>
-    <li class="manifesto-line alt">Character always.</li>
+    <li class="manifesto-line">El buen diseño no viene</li>
+    <li class="manifesto-line alt">de un único punto de vista.</li>
+    <li class="manifesto-line" style="margin-top:1rem">Viene de cuestionar,</li>
+    <li class="manifesto-line alt">combinar,</li>
+    <li class="manifesto-line"><em>colisionar.</em></li>
+    <li class="manifesto-line" style="margin-top:1rem">Rechazamos lo genérico.</li>
+    <li class="manifesto-line alt">Rechazamos lo seguro.</li>
+    <li class="manifesto-line">Diseñamos para negocios reales</li>
+    <li class="manifesto-line alt">y personas reales,</li>
+    <li class="manifesto-line"><em>no para portfolios.</em></li>
+    <li class="manifesto-line" style="margin-top:1rem">Estrategia primero.</li>
+    <li class="manifesto-line alt">Carácter, siempre.</li>
   </ul>
 
   <div style="display:inline-block;background:var(--dark);color:var(--mint);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;font-weight:700;letter-spacing:0.05em">
-    Mestizen Studio — Berlin & Everywhere 🌎
+    Mestizen Studio, Berlín & En todas partes 🌎
   </div>
 </section>
 
 <!-- CTA -->
 <section id="cta">
   <div class="cta-glow"></div>
-  <div class="section-label">Let's work together</div>
+  <div class="section-label">Trabajemos juntos</div>
   <h2 class="cta-headline">
-    Got a project in mind?<br><span>Let's talk about it.</span>
+    ¿Tienes un proyecto en mente?<br><span>Hablemos de ello.</span>
   </h2>
   <p class="cta-sub">
-    Book a free 30-minute discovery call.<br>No pitch. No pressure. Just a real conversation about what you need.
+    Reserva una llamada de descubrimiento gratuita de 30 minutos.<br>Sin pitch. Sin presión. Solo una conversación real sobre lo que necesitas.
   </p>
   <div class="cta-actions">
-    <button class="btn-big primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/solrac139/30min'});return false;">📅 Book a Free Call</button>
-    <a class="btn-big ghost" href="/cdn-cgi/l/email-protection#64070516080b1724090117100d1e010a4a070b095b1711060e0107105928011017415654330b160f">Send us a message →</a>
+    <button class="btn-big primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/solrac139/30min'});return false;">📅 Reservar llamada gratuita</button>
+    <a class="btn-big ghost" href="/cdn-cgi/l/email-protection#64070516080b1724090117100d1e010a4a070b095b1711060e0107105928011017415654330b160f">Envíanos un mensaje →</a>
     <!-- Calendly link widget begin -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
@@ -403,7 +404,7 @@
 <footer>
   <div class="footer-brand">
     Mestizen Studio
-    <small>Multidisciplinary Design 🌎 Berlin | Everywhere</small>
+    <small>Diseño Multidisciplinar, Berlín | En todas partes</small>
   </div>
   <div class="footer-links">
     <a href="#">Instagram</a>
@@ -411,9 +412,10 @@
     <a href="#">Dribbble</a>
     <a href="#">Email</a>
   </div>
-  <div class="footer-copy">© 2025 Mestizen Studio.<br>All rights irreverently reserved 😉</div>
+  <div class="footer-copy">© 2025 Mestizen Studio.<br>Todos los derechos irreverentemente reservados 😉</div>
 </footer>
-<!-- Main JS -->
-<script src="js/main.js"></script>
+
+<!-- Shared JS — same file as EN -->
+<script src="../js/main.js"></script>
 </body>
 </html>
