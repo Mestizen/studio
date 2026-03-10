@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mestizen Studio — Creativity Without Borders</title>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/components.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ── PAGE-SPECIFIC STYLES (index only) ── */
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 0 var(--section-padding-x);
+      position: relative; overflow: hidden;
+      background: var(--dark);
+    }
+    .hero-eyebrow {
+      font-size: var(--text-xs); font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-widest);
+      color: var(--mint); text-transform: uppercase;
+      margin-bottom: var(--space-6); opacity: 0;
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: var(--weight-black); line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+      max-width: 900px; position: relative; z-index: 1;
+      opacity: 0;
+    }
+    .hero-headline .accent       { color: var(--mint); }
+    .hero-headline .accent-coral { color: var(--coral); }
+    .hero-sub {
+      margin-top: var(--space-8);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: var(--color-text-secondary);
+      max-width: 560px; line-height: var(--leading-normal);
+      position: relative; z-index: 1; opacity: 0;
+    }
+    .hero-actions {
+      margin-top: 3rem;
+      display: flex; gap: var(--space-4); align-items: center;
+      position: relative; z-index: 1; opacity: 0;
+    }
+
+    /* About */
+    #about {
+      background: var(--cream); color: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-24); align-items: center;
+    }
+    #about .section-label { color: var(--purple); }
+    #about .section-label::before { background: var(--purple); }
+    .about-visual { position: relative; height: 480px; }
+    .about-card {
+      position: absolute;
+      background: var(--dark); color: var(--white);
+      border-radius: 20px; padding: var(--space-8);
+    }
+    .about-card.main {
+      width: 320px; height: 320px; top: 0; left: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background: linear-gradient(135deg, var(--purple), #2d0a6b);
+      overflow: hidden;
+    }
+    .about-card.main .big-letter {
+      font-family: var(--font-display);
+      font-size: 10rem; font-weight: var(--weight-black);
+      line-height: 1; color: rgba(255,255,255,0.08);
+      position: absolute; top: -1rem; left: -0.5rem;
+    }
+    .about-card.accent-card {
+      width: 220px; bottom: 0; right: 0;
+      background: var(--mint); color: var(--dark);
+    }
+    .about-card.accent-card .stat {
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: var(--weight-black);
+    }
+    .about-pill {
+      display: inline-block;
+      background: rgba(123,47,190,0.12);
+      border: 1px solid rgba(123,47,190,0.3);
+      color: var(--purple);
+      border-radius: var(--radius-pill); padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: var(--weight-semibold);
+      margin-bottom: var(--space-6);
+    }
+    .about-body p {
+      font-size: var(--text-lg); line-height: var(--leading-relaxed);
+      color: rgba(26,26,46,0.75); margin-bottom: var(--space-5);
+    }
+    .about-body strong { color: var(--dark); }
+
+    /* Services */
+    #services { background: var(--surface); }
+    .services-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: var(--space-16);
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);
+    }
+
+    /* Why */
+    #why {
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-24); align-items: center;
+    }
+    .why-list { list-style: none; margin-top: var(--space-10); }
+    .why-item {
+      display: flex; gap: var(--space-6); align-items: flex-start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .why-item:first-child { border-top: 1px solid var(--color-border-subtle); }
+    .why-num {
+      font-family: var(--font-display);
+      font-size: var(--text-xs); font-weight: var(--weight-bold);
+      color: var(--mint); padding-top: 4px; min-width: 28px;
+    }
+    .why-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-weight: var(--weight-bold);
+      margin-bottom: 0.4rem;
+    }
+    .why-item p { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.65; }
+    .why-visual {
+      background: linear-gradient(135deg, var(--purple) 0%, #2d0a6b 50%, var(--surface) 100%);
+      border-radius: var(--radius-xl); height: 500px;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .why-visual-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: var(--weight-black); line-height: 1.2;
+      position: relative; z-index: 1;
+    }
+    .why-visual-quote span { color: var(--mint); }
+    .why-deco {
+      position: absolute; top: -2rem; right: -2rem;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(0,245,160,0.15); filter: blur(40px);
+    }
+    .why-deco-2 {
+      position: absolute; bottom: 30%; left: -3rem;
+      width: 150px; height: 150px; border-radius: 50%;
+      background: rgba(255,107,107,0.15); filter: blur(40px);
+    }
+
+    /* Work */
+    #work { background: var(--work-bg); }
+    .work-header { margin-bottom: 3.5rem; }
+    .work-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-6);
+    }
+    .work-card:nth-child(1) { grid-column: span 7; height: 380px; }
+    .work-card:nth-child(2) { grid-column: span 5; height: 380px; }
+    .work-card:nth-child(3) { grid-column: span 4; height: 320px; }
+    .work-card:nth-child(4) { grid-column: span 8; height: 320px; }
+    .work-card-1 .work-bg { background: linear-gradient(135deg, var(--purple), var(--coral)); }
+    .work-card-2 .work-bg { background: linear-gradient(135deg, var(--mint), var(--surface)); }
+    .work-card-3 .work-bg { background: linear-gradient(135deg, var(--yellow), var(--coral)); }
+    .work-card-4 .work-bg { background: linear-gradient(135deg, var(--dark), var(--purple)); }
+    .work-cta-row { margin-top: 3rem; display: flex; justify-content: center; }
+
+    /* Manifesto */
+    #manifesto {
+      background: var(--mint); color: var(--dark);
+      text-align: center; padding: var(--space-32) var(--section-padding-x);
+    }
+    .manifesto-eyebrow {
+      font-size: 0.8rem; letter-spacing: var(--tracking-widest);
+      text-transform: uppercase; font-weight: var(--weight-bold);
+      color: rgba(26,26,46,0.5); margin-bottom: var(--space-8);
+    }
+    .manifesto-lines { list-style: none; max-width: 800px; margin: 0 auto 3rem; }
+    .manifesto-line {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-black); line-height: 1.1;
+      margin-bottom: 0.5rem;
+      opacity: 0; transform: translateY(30px);
+    }
+    .manifesto-line.alt { color: rgba(26,26,46,0.4); font-weight: var(--weight-regular); }
+    .manifesto-line em { font-style: italic; font-weight: var(--weight-black); color: var(--dark); }
+
+    /* Responsive — page level */
+    @media (max-width: 1024px) {
+      #about, #why { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { height: 300px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .work-card:nth-child(1), .work-card:nth-child(2),
+      .work-card:nth-child(3), .work-card:nth-child(4) { grid-column: span 12; }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV (injected from partial) -->
+<div id="nav-partial"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="blob-canvas" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <ellipse class="blob" cx="1200" cy="200" rx="320" ry="280" fill="rgba(0,245,160,0.07)" />
+    <ellipse class="blob" cx="200" cy="700" rx="250" ry="200" fill="rgba(255,107,107,0.06)" />
+    <ellipse class="blob" cx="900" cy="750" rx="200" ry="180" fill="rgba(123,47,190,0.08)" />
+    <g transform="translate(1100, 60) rotate(-20)" opacity="0.18">
+      <path d="M0,0 C20,-80 80,-120 120,-100 C80,-40 40,20 0,0Z" fill="#00F5A0"/>
+      <path d="M0,0 C-20,-80 -80,-120 -120,-100 C-80,-40 -40,20 0,0Z" fill="#00F5A0"/>
+      <line x1="0" y1="0" x2="0" y2="-100" stroke="#00F5A0" stroke-width="2"/>
+    </g>
+    <g transform="translate(240, 120) rotate(30)" opacity="0.12">
+      <path d="M0,0 C30,-100 100,-140 140,-110 C90,-50 50,30 0,0Z" fill="#7B2FBE"/>
+      <path d="M0,0 C-30,-100 -100,-140 -140,-110 C-90,-50 -50,30 0,0Z" fill="#7B2FBE"/>
+      <line x1="0" y1="0" x2="0" y2="-110" stroke="#7B2FBE" stroke-width="2"/>
+    </g>
+    <circle cx="1350" cy="600" r="80" fill="none" stroke="rgba(255,217,61,0.15)" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <circle cx="100" cy="300" r="50" fill="none" stroke="rgba(0,245,160,0.12)" stroke-width="1" stroke-dasharray="4 6"/>
+    <rect x="50" y="820" width="60" height="60" fill="none" stroke="rgba(255,107,107,0.12)" stroke-width="1.5" transform="rotate(45 80 850)"/>
+  </svg>
+
+  <svg class="float-shape" id="floatLeaf1" style="top:12%; right:8%; width:120px; opacity:0.2" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60,150 C60,150 10,80 30,20 C50,-10 90,10 90,60 C90,100 60,150 60,150Z" fill="#00F5A0"/>
+    <line x1="60" y1="150" x2="60" y2="20" stroke="#00F5A0" stroke-width="1.5" opacity="0.5"/>
+    <line x1="60" y1="100" x2="30" y2="70" stroke="#00F5A0" stroke-width="1" opacity="0.4"/>
+    <line x1="60" y1="80" x2="80" y2="55" stroke="#00F5A0" stroke-width="1" opacity="0.4"/>
+  </svg>
+  <svg class="float-shape" id="floatLeaf2" style="bottom:15%; right:18%; width:90px; opacity:0.15" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50,120 C20,80 0,40 20,10 C40,-10 80,10 80,50 C80,90 50,120 50,120Z" fill="#FF6B6B"/>
+    <line x1="50" y1="120" x2="30" y2="15" stroke="#FF6B6B" stroke-width="1.5" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-eyebrow" id="heroEyebrow">Creative Studio · Berlin & Everywhere</div>
+  <h1 class="hero-headline" id="heroHeadline">
+    Design that<br>
+    <span class="accent">mixes</span><br>
+    cultures,<br>
+    breaks <span class="accent-coral">rules.</span>
+  </h1>
+  <p class="hero-sub" id="heroSub">
+    We blend multicultural thinking with sharp strategy to build brands and digital experiences that actually stand out — not just in Berlin, but anywhere on the map.
+  </p>
+  <div class="hero-actions" id="heroActions">
+    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">🚀 Start a Project</button>
+    <button class="btn-ghost" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">See our work</button>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrapper">
+  <div class="marquee-track">
+    <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
+    <span class="marquee-item">UX/UI Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Webflow <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Shopify <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Strategy <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Product Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Ecommerce <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Creative Direction <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
+    <span class="marquee-item">UX/UI Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Webflow <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Shopify <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Strategy <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Product Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Ecommerce <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Creative Direction <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual" data-reveal>
+    <div class="about-card main">
+      <div class="big-letter">M</div>
+      <svg width="100%" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" style="opacity:0.4; margin-bottom:1rem">
+        <g transform="translate(30,30)">
+          <path d="M60,140 C60,140 20,90 35,30 C50,0 80,10 85,50 C88,80 60,140 60,140Z" fill="none" stroke="#00F5A0" stroke-width="2"/>
+          <line x1="60" y1="140" x2="55" y2="30" stroke="#00F5A0" stroke-width="1.5" opacity="0.6"/>
+          <path d="M60,80 C40,60 20,65 15,75 C40,78 55,82 60,80Z" fill="none" stroke="#00F5A0" stroke-width="1.5"/>
+          <path d="M60,100 C80,80 100,82 105,92 C80,95 65,100 60,100Z" fill="none" stroke="#00F5A0" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(140,10)">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="5 7"/>
+          <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+        </g>
+        <g transform="translate(140, 90)">
+          <rect x="0" y="0" width="80" height="50" rx="8" fill="none" stroke="rgba(0,245,160,0.3)" stroke-width="1.5"/>
+          <line x1="0" y1="14" x2="80" y2="14" stroke="rgba(0,245,160,0.2)" stroke-width="1"/>
+          <rect x="8" y="22" width="20" height="4" rx="2" fill="rgba(0,245,160,0.3)"/>
+          <rect x="8" y="30" width="40" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="8" y="38" width="30" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+        </g>
+      </svg>
+      <div style="position:relative;z-index:1">
+        <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.3rem">Founded in</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:800">2024</div>
+      </div>
+    </div>
+    <div class="about-card accent-card">
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(26,26,46,0.6);margin-bottom:0.5rem">Cultures mixed</div>
+      <div class="stat">∞</div>
+      <p style="font-size:0.85rem;margin-top:0.5rem;color:rgba(26,26,46,0.7)">Diversity is our core stack.</p>
+    </div>
+  </div>
+
+  <div class="about-body" data-reveal>
+    <div class="section-label">About</div>
+    <h2 class="section-title" style="color:var(--dark)">Built from mixed<br>roots. On purpose.</h2>
+    <div style="margin-top:2rem">
+      <p><strong>Mestizen</strong> comes from "Mestizo" — mixed heritage. The studio was founded with Venezuelan and Italian roots, and a very clear belief: <strong>the best ideas come from the most diverse rooms.</strong></p>
+      <p>We're not a generic studio that talks about "passion for innovation." We're a creative lab that actually lives diversity — across cultures, disciplines, gender, and perspective — and uses it as a design weapon.</p>
+      <p>Right now we work with startups, small businesses, and entrepreneurs who are ready to build something real. No fluff. No beige websites. <strong>Just sharp strategy and design that connects.</strong></p>
+    </div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem">
+      <span class="about-pill">🌎 Multicultural</span>
+      <span class="about-pill">⚡ Interdisciplinary</span>
+      <span class="about-pill">🎯 Strategic</span>
+      <span class="about-pill">🌿 Human-first</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What we do</div>
+      <h2 class="section-title">Services that<br>actually move things.</h2>
+    </div>
+    <button class="btn-ghost" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Start a project →</button>
+  </div>
+  <div class="services-grid">
+    <div class="service-card" data-reveal>
+      <div class="service-icon">🔥</div>
+      <h3>Brand Identity & Strategy</h3>
+      <p>Your brand is not your logo — it's the feeling people get. We build identities that are sharp, memorable, and culturally aware. From naming to visual system.</p>
+      <div class="service-tag">Brand · Visual Identity · Naming</div>
+    </div>
+    <div class="service-card" data-reveal>
+      <div class="service-icon">✦</div>
+      <h3>UX/UI Design</h3>
+      <p>Digital experiences that actually work and actually look good. We design interfaces with empathy first and aesthetics second — so users don't just visit, they stay.</p>
+      <div class="service-tag">Product Design · Research · Prototyping</div>
+    </div>
+    <div class="service-card" data-reveal>
+      <div class="service-icon">🌐</div>
+      <h3>Web Design & Development</h3>
+      <p>From Webflow to custom front-end builds. Fast, responsive, and built to convert. We don't just hand over a pretty file — we ship a working product.</p>
+      <div class="service-tag">Webflow · Custom Front-End · CMS</div>
+    </div>
+    <div class="service-card" data-reveal>
+      <div class="service-icon">🛒</div>
+      <h3>Ecommerce</h3>
+      <p>Shopify and WooCommerce stores that don't just sell products — they sell experiences. Designed to build trust and maximise conversion without looking like a template.</p>
+      <div class="service-tag">Shopify · WooCommerce · CRO</div>
+    </div>
+    <div class="service-card" data-reveal>
+      <div class="service-icon">🧠</div>
+      <h3>Strategic Design Consulting</h3>
+      <p>Before pixels, we need a plan. We help startups and entrepreneurs map out their design strategy, identify gaps, and prioritise the moves that actually matter.</p>
+      <div class="service-tag">Strategy · Roadmap · Audits</div>
+    </div>
+    <div class="service-card" data-reveal style="background: rgba(0,245,160,0.05); border-color: rgba(0,245,160,0.15);">
+      <div style="height:100%;display:flex;flex-direction:column;justify-content:space-between">
+        <svg viewBox="0 0 200 200" style="width:140px;opacity:0.3;margin-bottom:1rem" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(30,20)">
+            <path d="M70,160 C70,160 20,100 40,30 C55,-5 95,5 100,55 C103,90 70,160 70,160Z" fill="none" stroke="#00F5A0" stroke-width="2.5"/>
+            <line x1="70" y1="160" x2="65" y2="30" stroke="#00F5A0" stroke-width="2" opacity="0.5"/>
+            <path d="M70,90 C45,68 18,72 12,84 C43,87 65,90 70,90Z" fill="none" stroke="#00F5A0" stroke-width="2"/>
+            <path d="M70,115 C95,93 120,96 126,108 C95,111 75,115 70,115Z" fill="none" stroke="#00F5A0" stroke-width="2"/>
+          </g>
+        </svg>
+        <div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">Not sure where to start?</h3>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);margin-bottom:1.5rem">Book a free 30-min discovery call. No pitch, no pressure — just a real conversation.</p>
+          <button class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.4rem" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Book a call →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div data-reveal>
+    <div class="section-label">Why Mestizen</div>
+    <h2 class="section-title">Diversity isn't a<br>feature. It's the<br>whole <span style="color:var(--mint)">engine.</span></h2>
+    <ul class="why-list">
+      <li class="why-item">
+        <span class="why-num">01</span>
+        <div>
+          <h4>We think from multiple angles — not one playbook</h4>
+          <p>Multicultural backgrounds mean we spot what monocultural studios miss. Different references, different instincts, better solutions.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">02</span>
+        <div>
+          <h4>Strategy comes before aesthetics</h4>
+          <p>Pretty things that don't work are just decoration. Every pixel has a reason. Every decision is connected to a business goal.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">03</span>
+        <div>
+          <h4>We're honest. Even when it's uncomfortable</h4>
+          <p>We'll tell you if your idea needs work. That's not arrogance — that's what you're paying for. Integrity over comfort.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">04</span>
+        <div>
+          <h4>We don't do templates. We do systems.</h4>
+          <p>Tailored design strategies that scale. Not a premade theme dressed up with your logo slapped on top.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="why-visual" data-reveal>
+    <div class="why-deco"></div>
+    <div class="why-deco-2"></div>
+    <svg viewBox="0 0 300 250" style="position:absolute;top:2rem;right:2rem;width:180px;opacity:0.2" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(20,10)">
+        <path d="M120,220 C120,220 60,140 80,50 C95,5 145,15 150,70 C153,110 120,220 120,220Z" fill="none" stroke="#00F5A0" stroke-width="3"/>
+        <line x1="120" y1="220" x2="110" y2="50" stroke="#00F5A0" stroke-width="2" opacity="0.5"/>
+        <path d="M120,130 C80,100 35,108 25,122 C70,126 108,130 120,130Z" fill="none" stroke="#00F5A0" stroke-width="2"/>
+        <path d="M120,165 C160,135 200,140 208,155 C165,158 130,162 120,165Z" fill="none" stroke="#00F5A0" stroke-width="2"/>
+      </g>
+    </svg>
+    <div class="why-visual-quote">"Design without <span>diversity</span> is design without imagination."</div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-header">
+    <div class="section-label">Selected work</div>
+    <h2 class="section-title">What happens when<br>diversity <span style="color:var(--mint)">ships.</span></h2>
+    <p style="margin-top:1rem;color:rgba(255,255,255,0.45);max-width:480px;font-size:1rem;line-height:1.65">Every project starts with listening — to the culture, the business, and the people it's made for.</p>
+  </div>
+  <div class="work-grid">
+    <div class="work-card work-card-1" data-reveal>
+      <div class="work-bg">
+        <svg style="width:100%;height:100%;position:absolute;inset:0" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle cx="480" cy="80" r="120" fill="rgba(255,255,255,0.05)"/>
+          <g transform="translate(60,60)" opacity="0.3">
+            <rect x="0" y="0" width="180" height="120" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <circle cx="20" cy="20" r="8" fill="rgba(255,255,255,0.2)"/>
+            <rect x="38" y="13" width="80" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <rect x="12" y="100" width="50" height="12" rx="6" fill="rgba(255,107,107,0.4)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="work-overlay">
+        <div class="work-cat">Brand Identity</div>
+        <div class="work-title">Your Next Brand →</div>
+      </div>
+    </div>
+    <div class="work-card work-card-2" data-reveal>
+      <div class="work-bg">
+        <svg style="width:100%;height:100%;position:absolute;inset:0" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect x="60" y="40" width="280" height="180" rx="16" fill="rgba(26,26,46,0.5)" stroke="rgba(26,26,46,0.8)" stroke-width="1"/>
+          <rect x="85" y="100" width="230" height="80" rx="6" fill="rgba(0,245,160,0.08)" stroke="rgba(0,245,160,0.15)" stroke-width="1"/>
+          <rect x="85" y="192" width="60" height="10" rx="5" fill="rgba(0,245,160,0.4)"/>
+        </svg>
+      </div>
+      <div class="work-overlay">
+        <div class="work-cat">UX/UI Design</div>
+        <div class="work-title">Digital Product →</div>
+      </div>
+    </div>
+    <div class="work-card work-card-3" data-reveal>
+      <div class="work-bg">
+        <svg style="width:100%;height:100%;position:absolute;inset:0" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle cx="160" cy="100" r="60" fill="rgba(26,26,46,0.15)"/>
+          <text x="160" y="112" font-family="Bricolage Grotesque,sans-serif" font-size="36" font-weight="800" fill="rgba(26,26,46,0.3)" text-anchor="middle">MZ</text>
+        </svg>
+      </div>
+      <div class="work-overlay" style="background:linear-gradient(to top, rgba(26,26,46,0.85) 0%, transparent 60%)">
+        <div class="work-cat" style="color:var(--dark)">Ecommerce</div>
+        <div class="work-title" style="color:var(--dark)">Shopify Store →</div>
+      </div>
+    </div>
+    <div class="work-card work-card-4" data-reveal>
+      <div class="work-bg">
+        <svg style="width:100%;height:100%;position:absolute;inset:0" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect x="40" y="30" width="620" height="260" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <rect x="40" y="30" width="620" height="40" rx="8" fill="rgba(255,255,255,0.04)"/>
+          <circle cx="62" cy="50" r="6" fill="rgba(255,107,107,0.4)"/>
+          <circle cx="80" cy="50" r="6" fill="rgba(255,217,61,0.4)"/>
+          <circle cx="98" cy="50" r="6" fill="rgba(0,245,160,0.4)"/>
+          <rect x="55" y="85" width="120" height="180" rx="10" fill="rgba(123,47,190,0.15)" stroke="rgba(123,47,190,0.2)" stroke-width="1"/>
+          <rect x="195" y="85" width="200" height="180" rx="10" fill="rgba(0,245,160,0.06)" stroke="rgba(0,245,160,0.12)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="work-overlay">
+        <div class="work-cat">Web Design</div>
+        <div class="work-title">Webflow Build →</div>
+      </div>
+    </div>
+  </div>
+  <div class="work-cta-row">
+    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Want your project here next? →</button>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-eyebrow">The Mestizen Manifesto</div>
+  <ul class="manifesto-lines">
+    <li class="manifesto-line">We believe the best ideas</li>
+    <li class="manifesto-line alt">don't come from the same room,</li>
+    <li class="manifesto-line">the same culture,</li>
+    <li class="manifesto-line alt">the same background.</li>
+    <li class="manifesto-line" style="margin-top:1rem">Diversity isn't a checkbox.</li>
+    <li class="manifesto-line"><em>It's the whole point.</em></li>
+    <li class="manifesto-line alt" style="margin-top:1rem">We design for humans —</li>
+    <li class="manifesto-line">not for awards,</li>
+    <li class="manifesto-line alt">not for trends,</li>
+    <li class="manifesto-line">not for beige minimalism.</li>
+    <li class="manifesto-line" style="margin-top:1rem; color:var(--dark)"><em>For ideas with roots.</em></li>
+    <li class="manifesto-line">For brands with character.</li>
+    <li class="manifesto-line alt">For people who want to build something real.</li>
+  </ul>
+  <div style="display:inline-block;background:var(--dark);color:var(--mint);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;font-weight:700;letter-spacing:0.05em">
+    Mestizen Studio — Berlin & Everywhere 🌎
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="section-cta">
+  <div class="cta-glow"></div>
+  <div class="section-label" style="justify-content:center">Ready?</div>
+  <h2 class="cta-headline">Let's build something<br><span>worth talking about.</span></h2>
+  <p class="cta-sub">Got a bold idea? Book a free discovery call.<br>No pitch, no pressure — just a real conversation.</p>
+  <div class="cta-actions">
+    <button class="btn-big primary">📅 Book a Free Call</button>
+    <a href="mailto:hello@mestizen.studio" class="btn-big ghost">Send us a message →</a>
+  </div>
+</section>
+
+<!-- FOOTER (injected from partial) -->
+<div id="footer-partial"></div>
+
+<!-- Shared Scripts -->
+<script src="scripts/main.js"></script>
+<script>
+  // Page-specific animations (index only)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait for partials + shared init, then run page animations
+    setTimeout(() => {
+      initHeroEntrance();
+      initStaggerReveal('.service-card', '.services-grid');
+      initStaggerReveal('.work-card', '.work-grid', {
+        from: { opacity: 0, y: 40, scale: 0.97 },
+        to:   { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.1, ease: 'power3.out' }
+      });
+      gsap.fromTo('.why-item',
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out',
+          scrollTrigger: { trigger: '.why-list', start: 'top 78%' } }
+      );
+      gsap.fromTo('.manifesto-line',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+          scrollTrigger: { trigger: '.manifesto-lines', start: 'top 80%' } }
+      );
+      gsap.fromTo('.about-card.main',    { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: '.about-visual', start: 'top 80%' } });
+      gsap.fromTo('.about-card.accent-card', { opacity: 0, x: 40 },  { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: '.about-visual', start: 'top 80%' } });
+      gsap.fromTo('.why-visual', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.why-visual', start: 'top 80%' } });
+    }, 300);
+  });
+</script>
+</body>
+</html>
