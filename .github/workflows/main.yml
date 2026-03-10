@@ -1,3 +1,8 @@
+- name: Debug secrets
+  run: |
+    echo "Host: ${{ secrets.SERVER_HOST }}"
+    echo "User: ${{ secrets.SERVER_USER }}"
+
 name: Deploy
 
 on:
