@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RealPort — Brand Identity Case Study · Mestizen Studio</title>
+  <meta name="description" content="RealPort fintech startup brand identity — connecting sustainable infrastructure investment through regulated blockchain. Case study by Mestizen Studio."/>
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+
+<style>
+:root {
+  --rp-navy:  #161A6E;
+  --rp-blue:  #42C1FF;
+  --rp-dark:  #0d0f1a;
+  --rp-ink:   #10133a;
+  --rp-mist:  #e8eeff;
+  --rp-slate: #f4f6ff;
+}
+
+.cs-back {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); text-decoration: none;
+  padding: 5.5rem 4rem 0; position: relative; z-index: 1;
+  transition: color 0.2s;
+}
+.cs-back:hover { color: var(--rp-blue); }
+.cs-back svg { transition: transform 0.2s; }
+.cs-back:hover svg { transform: translateX(-3px); }
+
+/* HERO */
+.cs-hero {
+  min-height: 96svh; position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden; background: var(--rp-dark);
+}
+.cs-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 70% 30%, rgba(66,193,255,0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 45% at 20% 75%, rgba(22,26,110,0.5) 0%, transparent 60%),
+    linear-gradient(165deg, #0d0f1a 0%, #10133a 100%);
+}
+.cs-hero-grid {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(66,193,255,1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66,193,255,1) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.cs-hero-content {
+  position: relative; z-index: 2;
+  padding: 0 4rem 5.5rem; max-width: 1200px;
+}
+.cs-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rp-blue); margin-bottom: 1.75rem;
+}
+.cs-eyebrow::before { content:''; width:24px; height:1px; background:var(--rp-blue); }
+.cs-hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(3.8rem, 9vw, 8rem); font-weight: 800;
+  line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 2.5rem;
+}
+.cs-hero h1 em { font-style: normal; color: var(--rp-blue); }
+.cs-hero-meta { display: flex; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.cs-meta-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+.cs-meta-value { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+
+/* BRIEF */
+.cs-brief { background: var(--rp-slate); color: var(--rp-navy); padding: 7rem 4rem; }
+.cs-brief-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.65fr; gap: 6rem; align-items: start;
+}
+.cs-section-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rp-navy); opacity: 0.5; margin-bottom: 1rem;
+}
+.cs-brief h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.03em; color: var(--rp-navy);
+}
+.cs-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+.cs-pill {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.4rem 1rem; border-radius: 100px;
+  border: 1.5px solid rgba(22,26,110,0.2);
+  color: var(--rp-navy); background: rgba(22,26,110,0.06);
+}
+.cs-brief-body p {
+  font-size: 1.05rem; line-height: 1.78; color: rgba(22,26,110,0.6); margin-bottom: 1.25rem;
+}
+.cs-brief-body p:last-child { margin-bottom: 0; }
+
+/* LOGO PANEL */
+.cs-logo-panel {
+  background: var(--rp-navy); padding: 5.5rem 4rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-logo-panel img { width: 100%; max-width: 440px; height: auto; }
+
+/* SECTIONS */
+.cs-dark { background: var(--rp-ink); padding: 7rem 4rem; }
+.cs-dark-inner { max-width: 1200px; margin: 0 auto; }
+.cs-light { background: var(--rp-slate); color: var(--rp-navy); padding: 7rem 4rem; }
+.cs-light-inner { max-width: 1200px; margin: 0 auto; }
+
+.cs-section-num {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--rp-blue); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.cs-section-num::after { content:''; width:32px; height:1px; background:var(--rp-blue); opacity:0.5; }
+.cs-light .cs-section-num { color: var(--rp-navy); opacity: 0.55; }
+.cs-light .cs-section-num::after { background: var(--rp-navy); opacity: 0.3; }
+.cs-section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.03em;
+}
+.cs-light .cs-section-title { color: var(--rp-navy); }
+.cs-section-sub {
+  font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.42);
+  max-width: 580px; margin-top: 0.75rem;
+}
+.cs-light .cs-section-sub { color: rgba(22,26,110,0.6); }
+.cs-header-group { margin-bottom: 3.5rem; }
+
+/* LOGO SPLIT */
+.cs-logo-split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.cs-logo-panel-sm {
+  border-radius: 18px; padding: 3rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.07); min-height: 220px;
+}
+.cs-logo-panel-sm img { width: 100%; max-width: 240px; height: auto; }
+
+/* SYMBOL FEATURE */
+.cs-symbol-feature {
+  background: var(--rp-navy); padding: 6rem 4rem;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2.5rem; text-align: center;
+}
+.cs-symbol-feature img { width: clamp(90px, 18vw, 160px); height: auto; }
+.cs-symbol-feature h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem); font-weight: 800;
+  color: #fff; letter-spacing: -0.03em; max-width: 560px;
+}
+.cs-symbol-feature p {
+  font-size: 0.95rem; line-height: 1.72;
+  color: rgba(255,255,255,0.45); max-width: 520px;
+}
+
+/* DIAGRAM */
+.cs-diagram-wrap {
+  background: white; border-radius: 20px; overflow: hidden;
+  padding: 3rem; margin-top: 3rem;
+  box-shadow: 0 4px 40px rgba(22,26,110,0.08);
+}
+.cs-diagram-wrap img { width: 100%; height: auto; display: block; }
+
+/* DEAL FLOW */
+.cs-dealflow-wrap {
+  background: #0a0c22; border-radius: 20px;
+  padding: 3.5rem; margin-top: 3rem;
+  border: 1px solid rgba(66,193,255,0.12);
+}
+.cs-dealflow-wrap img { width: 100%; height: auto; display: block; }
+
+/* COLOR TOKENS */
+.cs-color-tokens {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 1.5rem;
+}
+.cs-color-token {
+  border-radius: 16px; padding: 1.75rem;
+  border: 1px solid rgba(66,193,255,0.1);
+  background: rgba(255,255,255,0.025);
+}
+.cs-swatch { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 1rem; }
+.cs-token-name {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--rp-blue); margin-bottom: 0.25rem;
+}
+.cs-token-hex {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1rem; font-weight: 700; color: #fff;
+}
+.cs-token-ref { font-size: 0.73rem; color: rgba(255,255,255,0.3); margin-top: 0.2rem; }
+
+/* IDENTITY MARKERS */
+.cs-markers { background: var(--rp-ink); padding: 0 4rem 7rem; }
+.cs-markers-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 1px; background: rgba(255,255,255,0.06);
+  border-radius: 20px; overflow: hidden;
+}
+.cs-marker {
+  padding: 2.25rem 1.5rem; background: var(--rp-ink);
+  display: flex; flex-direction: column; gap: 0.65rem; transition: background 0.3s;
+}
+.cs-marker:hover { background: rgba(66,193,255,0.06); }
+.cs-marker-icon { font-size: 1.3rem; line-height: 1; }
+.cs-marker-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1rem; font-weight: 800; color: #fff;
+}
+.cs-marker-desc { font-size: 0.78rem; line-height: 1.55; color: rgba(255,255,255,0.38); }
+
+/* SCREENS */
+.cs-screens {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.cs-screen-card {
+  border-radius: 20px; overflow: hidden; position: relative;
+  border: 1px solid rgba(66,193,255,0.1);
+}
+.cs-screen-card img { width: 100%; display: block; }
+.cs-screen-label {
+  position: absolute; bottom: 1rem; left: 1.25rem;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); background: rgba(10,12,34,0.7);
+  backdrop-filter: blur(8px); padding: 0.3rem 0.75rem; border-radius: 100px;
+}
+
+/* STATS */
+.cs-stats { background: var(--rp-navy); padding: 5rem 4rem; }
+.cs-stats-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+}
+.cs-stat-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.5rem,4vw,3.2rem); font-weight: 800;
+  color: var(--rp-blue); line-height: 1; letter-spacing: -0.04em; margin-bottom: 0.35rem;
+}
+.cs-stat-label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.45); line-height: 1.45; }
+
+/* MOCKUPS */
+.cs-billboard { position: relative; overflow: hidden; }
+.cs-billboard img { width: 100%; display: block; max-height: 560px; object-fit: cover; }
+.cs-billboard-cap {
+  position: absolute; bottom: 2rem; left: 4rem;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 0.55rem;
+}
+.cs-billboard-cap::before { content:''; width:18px; height:1px; background:rgba(255,255,255,0.5); }
+.cs-sign img { width: 100%; display: block; max-height: 560px; object-fit: cover; object-position: center 30%; }
+
+/* CTA */
+.cs-cta { text-align: center; padding: 8rem 4rem; background: var(--rp-dark); position: relative; overflow: hidden; }
+.cs-cta-glow {
+  position: absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:700px; height:700px; border-radius:50%;
+  background: radial-gradient(circle, rgba(66,193,255,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cs-cta h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.5rem,5vw,4rem); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.25rem;
+}
+.cs-cta h2 span { color: var(--rp-blue); }
+.cs-cta p { font-size: 1rem; color: rgba(255,255,255,0.42); max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.7; }
+.cs-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .cs-back { padding: 5rem 2.5rem 0; }
+  .cs-hero-content, .cs-brief, .cs-dark, .cs-light,
+  .cs-stats, .cs-markers, .cs-cta, .cs-logo-panel,
+  .cs-symbol-feature { padding-left: 2.5rem; padding-right: 2.5rem; }
+  .cs-brief-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cs-stats-inner { grid-template-columns: repeat(2,1fr); }
+  .cs-markers-grid { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 640px) {
+  .cs-back { padding: 5rem 1.5rem 0; }
+  .cs-hero-content { padding: 0 1.5rem 3.5rem; }
+  .cs-brief, .cs-dark, .cs-light, .cs-stats,
+  .cs-markers, .cs-cta, .cs-logo-panel,
+  .cs-symbol-feature { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .cs-hero-meta { gap: 1.5rem; }
+  .cs-logo-split, .cs-screens { grid-template-columns: 1fr; }
+  .cs-color-tokens { grid-template-columns: 1fr 1fr; }
+  .cs-stats-inner { grid-template-columns: 1fr 1fr; }
+  .cs-markers-grid { grid-template-columns: repeat(2,1fr); }
+  .cs-billboard-cap { left: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html"><div class="nav-logo"></div></a>
+  <ul class="nav-links">
+    <li><a href="../../index.html#about">About</a></li>
+    <li><a href="../../index.html#services">Services</a></li>
+    <li><a href="../../index.html#work">Work</a></li>
+    <li><a href="../../index.html#manifesto">Manifesto</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="../../es/index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">ES</a>
+    <button class="nav-cta" onclick="document.getElementById('cs-cta-section').scrollIntoView({behavior:'smooth'})">Let's Talk &rarr;</button>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="cs-hero-bg"></div>
+  <div class="cs-hero-grid"></div>
+  <div class="cs-hero-content">
+    <div class="cs-eyebrow">Fintech &middot; Brand Identity &amp; Strategy</div>
+    <h1 id="cs-hero-title">Re.imagine<br><em>RealPort</em></h1>
+    <div class="cs-hero-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Client</span>
+        <span class="cs-meta-value">RealPort</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Sector</span>
+        <span class="cs-meta-value">Fintech &middot; Renewable Energy</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Scope</span>
+        <span class="cs-meta-value">Brand Identity &middot; Platform UI</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Deliverables</span>
+        <span class="cs-meta-value">Logo &middot; System &middot; Color &middot; UI Kit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIEF -->
+<section class="cs-brief">
+  <div class="cs-brief-inner">
+    <div>
+      <div class="cs-section-tag">The Brief</div>
+      <h2>Bridging capital and sustainable infrastructure.</h2>
+      <div class="cs-pills">
+        <span class="cs-pill">Trust</span>
+        <span class="cs-pill">Structure</span>
+        <span class="cs-pill">Flow</span>
+        <span class="cs-pill">Innovation</span>
+        <span class="cs-pill">Transparency</span>
+      </div>
+    </div>
+    <div class="cs-brief-body">
+      <p>RealPort was a fintech startup building an investment platform on top of a European regulated blockchain and smart-contract framework. The platform solved a structural problem in the renewable energy market: small institutional investors lacked direct access to renewable asset owners, while many developers struggled to reach qualified capital partners.</p>
+      <p>RealPort created a trusted digital infrastructure connecting both sides &mdash; using regulated blockchain technology and smart contracts to enable transparent, secure, and efficient investment processes. Opening sustainable asset opportunities to investors who previously could not participate in these deals.</p>
+      <p>The brand identity was designed to reflect this role as a trusted bridge. The logotype construction illustrates the core concept of connection, structure, and flow &mdash; visually representing how RealPort links investors with sustainable assets through a robust digital framework.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO PANEL (navy full-bleed)
+<div class="cs-logo-panel" style="background-color:#f4f6ff; border-top: thin solid #ffffff;">
+  <img src="assets/realport/logo-white.svg" alt="RealPort logo white on navy">
+</div>-->
+
+<!-- 01 LOGO SYSTEM -->
+<section class="cs-dark">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">01 &mdash; Logo System</div>
+      <h2 class="cs-section-title">Structure, connection, flow.</h2>
+      <p class="cs-section-sub">The RealPort mark encodes the brand&rsquo;s core concept &mdash; a regulated, trusted bridge between capital and renewable infrastructure. Every element carries meaning.</p>
+    </div>
+    <div class="cs-logo-split">
+      <div class="cs-logo-panel-sm" style="background:var(--rp-navy);">
+        <img src="assets/realport/logo-realport-white.png" alt="RealPort logo on navy">
+      </div>
+      <div class="cs-logo-panel-sm" style="background:#fff;">
+        <img src="assets/realport/Logo.svg" alt="RealPort logo on white">
+      </div>
+      <div class="cs-logo-panel-sm" style="background:#ffffff; padding: 1rem !important;">
+        <img src="assets/realport/logo-white.svg" style="max-width: 490px;" alt="RealPort logo on blue">
+      </div>
+      <div class="cs-logo-panel-sm" style="background:#cdd2fc;border-color:rgba(66,193,255,0.15);">
+        <img src="assets/realport/symbol.svg" alt="RealPort symbol" style="max-width:120px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYMBOL FEATURE -->
+<div class="cs-symbol-feature">
+  <img src="assets/realport/symbol.svg" alt="RealPort symbol">
+  <h3>A symbol built on trust and geometry.</h3>
+  <p>The hexagonal shield form references regulated security and stability &mdash; the foundation of any serious financial infrastructure. The R mark within references both the brand name and the routing of capital flows through the platform.</p>
+</div>
+
+<!-- 02 BRAND ARCHITECTURE -->
+<section class="cs-light">
+  <div class="cs-light-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">02 &mdash; Brand Architecture</div>
+      <h2 class="cs-section-title">Asset holder + Platform<br>+ Investors = RealPort.</h2>
+      <p class="cs-section-sub">The brand architecture diagram makes the business model legible. RealPort sits at the centre &mdash; the trusted platform that makes all parties possible together.</p>
+    </div>
+    <div class="cs-diagram-wrap">
+      <img src="assets/realport/logo-realport copy 2.svg" alt="RealPort brand architecture diagram">
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY MARKERS -->
+<div class="cs-markers">
+  <div class="cs-markers-grid">
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x2B21;</div>
+      <div class="cs-marker-title">Regulated</div>
+      <div class="cs-marker-desc">Shield geometry signals compliance, stability, and trust in a regulated fintech context.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x21CC;</div>
+      <div class="cs-marker-title">Connected</div>
+      <div class="cs-marker-desc">The logotype construction illustrates flow &mdash; capital moving through a trusted channel.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x25CE;</div>
+      <div class="cs-marker-title">Precise</div>
+      <div class="cs-marker-desc">Clean geometric forms. No ornamentation &mdash; built for clarity and institutional credibility.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x26A1;</div>
+      <div class="cs-marker-title">Renewable</div>
+      <div class="cs-marker-desc">Sky blue references clean energy and transparency &mdash; the sector the platform serves.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x25A0;</div>
+      <div class="cs-marker-title">Scalable</div>
+      <div class="cs-marker-desc">From mobile UI and app icons to building signage and outdoor campaigns.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 COLOR & TYPE -->
+<section class="cs-dark">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">03 &mdash; Color &amp; Type</div>
+      <h2 class="cs-section-title">Authority in navy.<br>Energy in blue.</h2>
+      <p class="cs-section-sub">Two colors carrying the full weight of the brand &mdash; deep institutional navy paired with the kinetic clarity of sky blue. Together they signal trust and momentum.</p>
+    </div>
+    <div class="cs-color-tokens">
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#161A6E;"></div>
+        <div class="cs-token-name">Navy &mdash; Primary</div>
+        <div class="cs-token-hex">#161A6E</div>
+        <div class="cs-token-ref">Authority &middot; Stability &middot; Trust</div>
+      </div>
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#42C1FF;"></div>
+        <div class="cs-token-name">Blue &mdash; Accent</div>
+        <div class="cs-token-hex">#42C1FF</div>
+        <div class="cs-token-ref">Energy &middot; Flow &middot; Clarity</div>
+      </div>
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#e8eeff;border:1px solid rgba(22,26,110,0.12);"></div>
+        <div class="cs-token-name">Mist &mdash; Surface</div>
+        <div class="cs-token-hex">#E8EEFF</div>
+        <div class="cs-token-ref">Clean &middot; Airy &middot; Digital</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PLATFORM UI -->
+<section class="cs-dark" style="padding-top:0;">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">04 &mdash; Platform UI</div>
+      <h2 class="cs-section-title">The brand in motion &mdash;<br>built into the product.</h2>
+      <p class="cs-section-sub">The visual identity system extended seamlessly into the investment platform UI &mdash; from the dashboard to the deal detail view, across desktop and mobile.</p>
+    </div>
+    <div class="cs-screens">
+      <div class="cs-screen-card">
+        <img src="assets/realport/Desktop-screen.png" alt="RealPort platform desktop view" loading="lazy">
+        <div class="cs-screen-label">Desktop &middot; Dashboard</div>
+      </div>
+      <div class="cs-screen-card">
+        <img src="assets/realport/07.png" style="width: 125%; margin-left: -70px;" alt="RealPort platform mobile view" loading="lazy">
+        <div class="cs-screen-label">Mobile &middot; Deal view</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DEAL FLOW -->
+<section class="cs-dark" style="padding-top:0;">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">05 &mdash; Deal Flow System</div>
+      <h2 class="cs-section-title">Infrastructure for<br>the whole deal lifecycle.</h2>
+      <p class="cs-section-sub">The brand extended into the platform&rsquo;s deal flow language &mdash; a structured visual system for representing how investment opportunities move from origination to close.</p>
+    </div>
+    <div class="cs-dealflow-wrap" style="background: #ffffff; padding: 13.5rem;">
+      <img src="assets/realport/logo-real-deal-flow-navi.svg" alt="RealPort deal flow diagram">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="cs-stats">
+  <div class="cs-stats-inner">
+    <div>
+      <div class="cs-stat-num">2</div>
+      <div class="cs-stat-label">Brand colors carrying full identity weight</div>
+    </div>
+    <div>
+      <div class="cs-stat-num">B2B</div>
+      <div class="cs-stat-label">Institutional audience requiring trust and authority</div>
+    </div>
+    <div>
+      <div class="cs-stat-num">1</div>
+      <div class="cs-stat-label">Unified system from symbol to full UI kit</div>
+    </div>
+    <div>
+      <div class="cs-stat-num">&infin;</div>
+      <div class="cs-stat-label">Scalable from app icon to outdoor signage</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="cs-mockup" style="display: flex;">
+  <!-- BILLBOARD -->
+  <div class="cs-billboard">
+    <img src="assets/realport/Realport-billboard.png" alt="RealPort billboard mockup" loading="lazy">
+    <div class="cs-billboard-cap">Outdoor application</div>
+  </div>
+
+  <!-- SIGN -->
+  <div class="cs-sign">
+    <img src="assets/realport/Realport-sign.png" alt="RealPort building sign mockup" loading="lazy">
+  </div>
+</div>
+<!-- CTA -->
+<section class="cs-cta" id="cs-cta-section">
+  <div class="cs-cta-glow"></div>
+  <div class="section-label" style="display:flex;justify-content:center;margin-bottom:1.5rem;">Let&rsquo;s work together</div>
+  <h2>Ready to build a brand<br><span>worth remembering?</span></h2>
+  <p>Every strong brand starts with a clear conversation. Book a free 30-minute discovery call &mdash; no pitch, no pressure.</p>
+  <div class="cs-cta-actions">
+    <button class="btn-big primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/solrac139/30min'});return false;">
+      &#128197; Book a free call
+    </button>
+    <a class="btn-big ghost" href="../brand-identity.html">Our brand services &rarr;</a>
+  </div>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    Mestizen Studio
+    <small>Multidisciplinary Design &#127758; Berlin | Everywhere</small>
+  </div>
+  <div class="footer-links">
+    <a href="../../index.html">Home</a>
+    <a href="../../index.html#services">Services</a>
+    <a href="../../index.html#work">Work</a>
+    <a href="../../index.html#manifesto">Manifesto</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Mestizen Studio.<br>All rights irreverently reserved &#128521;</div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.fromTo('#cs-hero-title',
+  { opacity: 0, y: 60 },
+  { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', delay: 0.3 }
+);
+gsap.fromTo('.cs-eyebrow',
+  { opacity: 0, x: -20 },
+  { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 }
+);
+gsap.fromTo('.cs-hero-meta',
+  { opacity: 0, y: 20 },
+  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.55 }
+);
+
+['cs-brief','cs-logo-panel','cs-dark','cs-light','cs-stats',
+ 'cs-billboard','cs-sign','cs-cta','cs-symbol-feature'].forEach(function(cls) {
+  document.querySelectorAll('.' + cls).forEach(function(el) {
+    gsap.fromTo(el,
+      { opacity: 0, y: 36 },
+      { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 87%' } }
+    );
+  });
+});
+
+gsap.fromTo('.cs-logo-panel-sm',
+  { opacity: 0, y: 28, scale: 0.97 },
+  { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cs-logo-split', start: 'top 82%' } }
+);
+gsap.fromTo('.cs-screen-card',
+  { opacity: 0, y: 28 },
+  { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-screens', start: 'top 82%' } }
+);
+gsap.fromTo('.cs-marker',
+  { opacity: 0, y: 22 },
+  { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-markers-grid', start: 'top 84%' } }
+);
+gsap.fromTo('.cs-stat-num',
+  { opacity: 0, y: 18 },
+  { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-stats', start: 'top 85%' } }
+);
+</script>
+</body>
+</html>

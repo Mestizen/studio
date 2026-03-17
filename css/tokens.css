@@ -1,0 +1,141 @@
+/**
+ * ╔══════════════════════════════════════════════════════════════════╗
+ * ║          MESTIZEN STUDIO — DESIGN TOKENS                        ║
+ * ║          Source of truth: mestizen-studio.html                  ║
+ * ║          Generated: 2026-03-10                                  ║
+ * ╚══════════════════════════════════════════════════════════════════╝
+ *
+ * NOTE ON --dark:
+ *   The canonical value is #1a1a2e (from mestizen-studio.html).
+ *   Earlier audit docs incorrectly listed #060626. This file is correct.
+ */
+
+:root {
+
+  /* ── BRAND COLORS ──────────────────────────────────────── */
+  --mint:         #00F5A0;   /* Primary accent · CTAs · highlights */
+  --dark:         #1a1a2e;   /* Primary bg · nav scrolled · text on light */
+  --cream:        #f5f0e8;   /* About section (only light surface in site) */
+  --coral:        #FF6B6B;   /* Decorative accent · hero headline */
+  --yellow:       #FFD93D;   /* Decorative accent */
+  --purple:       #7B2FBE;   /* About label · why-visual gradient start */
+  --purple-dark:  #2d0a6b;   /* About card gradient end · why-visual gradient mid */
+  --white:        #ffffff;
+
+  /* ── SURFACE COLORS ────────────────────────────────────── */
+  /* These are hardcoded in the source. Tokenised here for consistency. */
+  --surface-services:  #0f0f1e;  /* #services background */
+  --surface-work:      #0a0a1a;  /* #work background */
+  --surface-footer:    #060612;  /* footer background */
+
+  /* ── BORDER & TEXT ALPHA ───────────────────────────────── */
+  --border:       rgba(255, 255, 255, 0.08);
+  --text-muted:   rgba(255, 255, 255, 0.50);
+  --text-sub:     rgba(255, 255, 255, 0.70);
+  --text-dim:     rgba(255, 255, 255, 0.35);  /* scroll-hint, footer copy */
+
+  /* ── TYPOGRAPHY ────────────────────────────────────────── */
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body:    'Manrope', sans-serif;
+
+  /* Scale */
+  --text-xs:      0.7rem;    /* ~11px · labels, tags */
+  --text-sm:      0.75rem;   /* ~12px · eyebrows, footer copy */
+  --text-base:    0.85rem;   /* ~14px · nav links, small UI */
+  --text-body:    0.9rem;    /* ~14.5px · body copy */
+  --text-md:      1rem;      /* ~16px · marquee, service tags */
+  --text-lg:      1.1rem;    /* ~18px · about body, cta-sub */
+  --text-xl:      1.25rem;   /* ~20px · service cards h3 */
+  --text-2xl:     1.4rem;    /* ~22px · nav-logo, work-title */
+  --text-section: clamp(2.2rem, 4vw, 3.5rem);   /* section headings */
+  --text-cta:     clamp(2.5rem, 5vw, 4.5rem);   /* cta headline */
+  --text-hero:    clamp(3.5rem, 8vw, 7rem);      /* hero headline */
+
+  /* Weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
+  /* Tracking */
+  --tracking-tight:   -0.03em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.08em;
+  --tracking-widest:   0.2em;
+
+  /* Leading */
+  --leading-none:    0.95;
+  --leading-tight:   1.05;
+  --leading-snug:    1.2;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.65;
+  --leading-loose:   1.75;
+
+  /* ── SPACING ───────────────────────────────────────────── */
+  --space-1:   0.25rem;   /*  4px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-14:  3.5rem;    /* 56px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+  --space-28:  7rem;      /* 112px */
+  --space-32:  8rem;      /* 128px */
+
+  /* Section padding (from source) */
+  --section-pad-y:    7rem;
+  --section-pad-x:    4rem;
+  --section-pad-y-lg: 8rem;   /* manifesto, cta */
+
+  /* ── BORDER RADIUS ─────────────────────────────────────── */
+  --radius-sm:   8px;    /* sidebar links */
+  --radius-md:   14px;   /* service icon box */
+  --radius-lg:   20px;   /* cards, work cards */
+  --radius-xl:   24px;   /* why-visual */
+  --radius-pill: 100px;  /* all buttons */
+
+  /* ── SHADOWS ───────────────────────────────────────────── */
+  --shadow-nav:    0 0 20px rgba(0, 245, 160, 0.4);
+  --shadow-btn:    0 12px 32px rgba(0, 245, 160, 0.35);
+  --shadow-btn-lg: 0 16px 40px rgba(0, 245, 160, 0.35);
+
+  /* ── TRANSITIONS ───────────────────────────────────────── */
+  --transition-fast:   0.2s ease;
+  --transition-base:   0.3s ease;
+  --transition-slow:   0.4s ease;
+  --transition-reveal: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Z-INDEX ───────────────────────────────────────────── */
+  --z-cursor:  0;
+  --z-content: 1;
+  --z-nav:     100;
+}
+
+/* ── RESPONSIVE OVERRIDES ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --section-pad-y: 5rem;
+    --section-pad-x: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --section-pad-y:    4rem;
+    --section-pad-x:    1.5rem;
+    --section-pad-y-lg: 5rem;
+  }
+}
+
+/*
+  DEPRECATED — do not use in new work:
+  --charcoal: #2d2d2d  (defined in old DS, never used in source)
+*/
