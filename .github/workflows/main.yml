@@ -17,5 +17,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /home2/elfrappe/public_html/test
+            cd /home2/elfrappe/public_html/mestizen
             git pull origin main
