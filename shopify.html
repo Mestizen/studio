@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ecommerce — Shopify Design & Development — Mestizen Studio</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --mint: #00F5A0;
+      --mint-soft: #e6fff6;
+      --dark: #060626;
+      --cream: #f5f0e8;
+      --off-white: #f8f7f4;
+      --coral: #FF6B6B;
+      --yellow: #FFD93D;
+      --purple: #7B2FBE;
+      --purple-soft: #f0e8ff;
+      --white: #ffffff;
+      --text-muted: rgba(6,6,38,0.5);
+      --text-body: rgba(6,6,38,0.75);
+      --border: rgba(6,6,38,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(0px);
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(26,26,46,0.9);
+      backdrop-filter: blur(16px);
+    }
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--mint); letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.04em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--mint); }
+    .nav-cta {
+      background: var(--mint); color: var(--dark);
+      border: none; padding: 0.65rem 1.4rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      border-radius: 100px; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,245,160,0.4); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+      color: var(--mint); margin-bottom: 1rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 0 4rem;
+      position: relative; overflow: hidden;
+      background: var(--dark);
+    }
+    .blob-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em;
+      color: var(--mint); text-transform: uppercase;
+      margin-bottom: 1.5rem; opacity: 0;
+    }
+    .hero-headline {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 800; line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 900px; position: relative; z-index: 1;
+      opacity: 0;
+    }
+    .hero-headline .accent { color: var(--mint); }
+    .hero-headline .accent-coral { color: var(--coral); }
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 560px; line-height: 1.6;
+      position: relative; z-index: 1;
+      opacity: 0;
+    }
+    .hero-actions {
+      margin-top: 3rem;
+      display: flex; gap: 1rem; align-items: center;
+      position: relative; z-index: 1;
+      opacity: 0;
+    }
+    .btn-primary {
+      background: var(--mint); color: var(--dark);
+      border: none; padding: 1rem 2rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      border-radius: 100px; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,245,160,0.35); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 1rem 2rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600; font-size: 1rem;
+      border-radius: 100px; cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .btn-ghost:hover { border-color: var(--mint); color: var(--mint); }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 4rem;
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.35); text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .scroll-line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.25);
+      position: relative; overflow: hidden;
+    }
+    .scroll-line::after {
+      content: ''; position: absolute;
+      left: -100%; top: 0; width: 100%; height: 100%;
+      background: var(--mint);
+      animation: scanline 2s ease-in-out infinite;
+    }
+    @keyframes scanline { 0%{left:-100%} 100%{left:100%} }
+    .float-shape {
+      position: absolute; pointer-events: none;
+      will-change: transform;
+    }
+    /* Cursor glow */
+    .cursor-glow {
+      width: 300px; height: 300px;
+      position: fixed; pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrapper {
+      overflow: hidden;
+      background: var(--mint);
+      padding: 1rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--dark); white-space: nowrap;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .marquee-dot { width: 6px; height: 6px; background: var(--dark); border-radius: 50%; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 4rem; }
+
+    /* ── INTRO ── */
+    #intro {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+      align-items: start;
+    }
+    .section-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.02em; color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .intro-body p {
+      font-size: 1.05rem; line-height: 1.8;
+      color: var(--text-body); margin-bottom: 1.25rem;
+    }
+    .intro-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .stat-box {
+      background: var(--off-white); border-radius: 16px;
+      padding: 1.75rem; border: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2.5rem; font-weight: 800;
+      color: var(--dark); line-height: 1;
+    }
+    .stat-num span { color: var(--purple); }
+    .stat-label {
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-muted); margin-top: 0.4rem;
+    }
+
+    /* ── CASE STUDY FEATURE ── */
+    #case-study {
+      background: var(--dark); color: var(--white);
+      padding: 7rem 4rem;
+    }
+    #case-study .section-label { color: var(--mint); }
+    .case-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 4rem;
+    }
+    .case-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 1.5rem; line-height: 1.1;
+    }
+    .case-title span { color: var(--mint); }
+    .case-desc {
+      font-size: 1rem; line-height: 1.8;
+      color: rgba(255,255,255,0.6); margin-bottom: 2rem;
+    }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .tag {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
+      padding: 0.4rem 0.9rem; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+    }
+    .case-link {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      color: var(--mint); font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: gap 0.3s;
+    }
+    .case-link:hover { gap: 1rem; }
+
+    /* Shopify store mockup */
+    .store-mockup {
+      border-radius: 24px; overflow: hidden;
+      background: #0d0d2e; border: 1px solid rgba(255,255,255,0.08);
+      /*aspect-ratio: 4/3; */ position: relative;
+      height: 360px;
+    }
+    .browser-bar {
+      background: rgba(255,255,255,0.06);
+      height: 36px; display: flex; align-items: center;
+      padding: 0 1rem; gap: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-url {
+      flex: 1; background: rgba(255,255,255,0.06);
+      border-radius: 4px; height: 20px; margin: 0 1rem;
+      padding: 0 0.75rem;
+      font-size: 0.65rem; color: rgba(255,255,255,0.3);
+      font-family: 'Manrope', sans-serif;
+      display: flex; align-items: center;
+    }
+    .store-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .store-logo-mock { width: 70px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 4px; }
+    .store-nav-right { display: flex; gap: 0.5rem; align-items: center; }
+    .store-icon { width: 20px; height: 20px; border-radius: 4px; background: rgba(255,255,255,0.1); }
+    .store-content { padding: 1rem 1.25rem; }
+    /* Hero banner */
+    .store-banner {
+      background: linear-gradient(135deg, rgba(245, 230, 255, 0.15), rgba(0,245,160,0.08));
+      border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .store-banner-text { flex: 1; }
+    .store-banner-h { width: 55%; height: 9px; background: rgba(255,255,255,0.3); border-radius: 4px; margin-bottom: 0.5rem; }
+    .store-banner-sub { width: 80%; height: 6px; background: rgba(255,255,255,0.15); border-radius: 3px; margin-bottom: 0.4rem; }
+    .store-banner-sub.s { width: 50%; }
+    .store-banner-btn { height: 16px; width: 60px; background: var(--mint); border-radius: 8px; margin-top: 0.6rem; }
+    .store-product-img {
+      width: 80px; height: 80px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(123,47,190,0.4), rgba(0,245,160,0.2));
+      flex-shrink: 0; position: relative; overflow: hidden;
+    }
+    /* Product grid */
+    .store-section-title { height: 6px; width: 100px; background: rgba(255,255,255,0.2); border-radius: 3px; margin-bottom: 0.75rem; }
+    .store-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .store-product-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px; overflow: hidden;
+    }
+    .store-product-img-sm {
+      height: 50px;
+      background: linear-gradient(135deg, rgba(123,47,190,0.3), rgba(0,245,160,0.1));
+    }
+    .store-product-card:nth-child(2) .store-product-img-sm {
+      background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(255,217,61,0.1));
+    }
+    .store-product-card:nth-child(3) .store-product-img-sm {
+      background: linear-gradient(135deg, rgba(0,245,160,0.2), rgba(123,47,190,0.15));
+    }
+    .store-product-info { padding: 0.5rem; }
+    .store-product-name { height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; margin-bottom: 0.3rem; }
+    .store-product-price { height: 5px; width: 50%; background: rgba(0,245,160,0.4); border-radius: 3px; }
+
+    /* ── PROCESS ── */
+    #process { background: var(--off-white); }
+    .process-header { max-width: 600px; margin-bottom: 4rem; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .process-step { position: relative; }
+    .step-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 3.5rem; font-weight: 800;
+      color: var(--mint); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .step-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 0.75rem;
+    }
+    .step-desc { font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); }
+    .step-connector {
+      position: absolute; top: 2rem; right: -0.75rem;
+      width: 1.5rem; height: 1px; background: var(--border);
+    }
+
+    /* ── CONVERSION SECTION ── */
+    #conversion {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+    }
+    .conversion-left {}
+    .cro-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .cro-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem; border-radius: 14px;
+      background: var(--off-white); border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .cro-item:hover { border-color: var(--purple); transform: translateX(4px); }
+    .cro-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--purple-soft); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .cro-text h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.25rem;
+    }
+    .cro-text p { font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); }
+    .conversion-right {}
+    .highlight-box {
+      background: var(--dark); color: var(--white);
+      border-radius: 20px; padding: 2.5rem; margin-bottom: 1.5rem;
+    }
+    .highlight-box h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .highlight-box h3 span { color: var(--mint); }
+    .highlight-box p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+    .shopify-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,245,160,0.1); border: 1px solid rgba(0,245,160,0.2);
+      color: var(--mint); padding: 0.5rem 1rem;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700;
+    }
+    .pricing-card {
+      background: var(--purple-soft); border-radius: 20px; padding: 2rem;
+      border: 1px solid rgba(123,47,190,0.15);
+    }
+    .pricing-from { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.25rem; }
+    .pricing-amount { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--dark); line-height: 1; }
+    .pricing-desc { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 1.25rem; }
+
+    /* ── IDEAL FOR ── */
+    #ideal { background: var(--off-white); }
+    .ideal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ideal-card {
+      background: var(--white); border-radius: 20px; padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .ideal-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(6,6,38,0.07); border-color: var(--purple); }
+    .ideal-card .icon { font-size: 1.75rem; margin-bottom: 1.25rem; width: 52px; height: 52px; border-radius: 14px; background: var(--purple-soft); display: flex; align-items: center; justify-content: center; }
+    .ideal-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.6rem; }
+    .ideal-card p { font-size: 0.88rem; line-height: 1.65; color: var(--text-muted); }
+
+    /* ── CTA ── */
+    #cta {
+      background: var(--dark); text-align: center;
+      padding: 8rem 4rem; position: relative; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,245,160,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #cta .section-label { justify-content: center; display: flex; margin-bottom: 1.5rem; color: var(--mint); }
+    .cta-headline {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em; color: var(--white);
+      max-width: 700px; margin: 0 auto 1.5rem;
+    }
+    .cta-headline span { color: var(--mint); }
+    .cta-sub { color: rgba(255,255,255,0.5); font-size: 1.1rem; margin-bottom: 3rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-big {
+      padding: 1.2rem 2.5rem; font-size: 1rem; border-radius: 100px;
+      font-family: 'Manrope', sans-serif; font-weight: 700; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s; border: none;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-big.primary { background: var(--mint); color: var(--dark); }
+    .btn-big.primary:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,245,160,0.3); }
+    .btn-big.ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.2); }
+    .btn-big.ghost:hover { border-color: var(--mint); color: var(--mint); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #030318; padding: 3rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-brand { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1rem; font-weight: 800; color: var(--mint); }
+    .footer-brand small { display: block; font-family: 'Manrope', sans-serif; font-size: 0.72rem; font-weight: 400; color: rgba(255,255,255,0.25); margin-top: 0.2rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--mint); }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      section { padding: 5rem 2rem; }
+      nav { padding: 1rem 2rem; }
+      #hero { padding: 0 2rem 5rem; }
+      #intro, #conversion, .case-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .step-connector { display: none; }
+      .ideal-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 0 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .ideal-grid { grid-template-columns: 1fr; }
+      .intro-stats { grid-template-columns: 1fr 1fr; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      footer { flex-direction: column; gap: 2rem; text-align: center; }
+      nav.scrolled { width: calc(100% - 2rem); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo"></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#manifesto">Manifesto</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="es/index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">ES</a>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Let's Talk →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+
+  <!-- Tropical blobs SVG background -->
+  <svg class="blob-canvas" preserveAspectRatio="xMidYMid slice" style="opacity:0.07" viewBox="0 0 450.57 239" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M6.45,224c-.25.39-.27,1.5-.95,2.51-2.7,4.06-7.57,4.97-4.56,12.49,4.58-5.65,9.03-11.69,13.99-17.01,8.8-9.45,14.39-16.36,28.12-17.88,34.41-3.81,62.48,17.4,94.38,25.41,17.27,4.34,36.27,6.77,54.01,4.48l-25.26-8.22c-20.08-7.85-39.5-17.87-59.75-25.25-23.29-8.49-42.19-10.65-65.98-1.53,18.11-16.48,40.29-30.86,61.98-42.51,6.83-3.67,30.55-16.45,36.58-17.41,18.87-3.02,57.72,22.62,76.08,30.79,19.91,8.87,41.27,15.52,63.35,15.13l-21.67-8.82c-7.2-3.89-14.83-7.05-22-11-26.08-14.37-49.7-40.94-82.32-31.18l30.58-11.91c27.21-3.6,48.66,18.83,70.74,31.09,19.49,10.82,40.95,19.77,63.67,19.82-.23-1.5-1.89-1.86-2.98-2.51-11.99-7.16-25.46-13.29-37.69-20.31-22.54-12.93-44.41-30.35-70.32-35.18l48.99-13.98c-42.51,6.21-83.28,20.24-122.99,35.98,13.09-10.36,25.62-21.24,36.97-33.52L244.44,0c-27.35,22.8-57.13,48.48-77.8,77.69-13.21,18.66-24.31,42.46-39.67,59.33-4.08,4.47-21.42,15.17-27.03,16.97-.51.16-1.63.27-1.48-.48,41.66-36.66,57.05-91.7,81.17-139.83l4.33-11.67c-26.28,30.17-49.29,63.3-68.68,98.32-9.3,16.81-25.51,55.82-38.91,67.09-6.41,5.39-16.08,10.61-23.23,15.77-1.9,1.37-7.14,6.33-8.2,6.81-.43.2-1.64.25-1.48-.49,18.25-21.67,35.03-46.31,45.01-72.99,6.21-16.58,9.94-34.19,16.24-50.76l20.25-46.75c-20.2,24.1-40.79,51.45-53.68,80.32-13.58,30.4-16.13,65.41-34.65,94.35-5.45,8.51-21.95,23.44-30.17,30.33,31.06-47.89,41.14-98.18,65.14-149.36,5.95-12.7,13.03-24.89,18.85-37.64-27.78,27.84-53.28,62.06-63.91,100.58-6.89,24.98-9.66,60.07-20.54,82.46-1.29,2.65-4.91,5.67-4.05,7.95,1.26-1.63,2.96-2.7,4.5-4ZM316.45,7.01c-25.37,8.58-51.4,21.57-72.91,37.58-19.27,14.35-32.64,31.95-49.06,48.94-7.79,8.06-16.27,15.39-24.03,23.46,45.72-20.45,75.31-61.88,115.68-89.8l30.31-20.18ZM362.45,12.01c-22.25,8.33-45.69,19.74-65.52,32.96-18.07,12.05-31.73,28.14-49.58,40.42l-31.89,20.6c21-4.78,41.34-12.76,59.92-23.57L362.45,12.01ZM413.45,44.01c-34.87,4.61-70.16,12.23-102.02,27.47l-37.97,21.51c33.03-4.25,62.21-20.84,92.75-32.74l47.24-16.24ZM450.28,91.16c-.39-.65-10.26-3.87-12.06-4.43-33.7-10.54-73.67-8.63-107.96-1.42-1.99.42-15.84,3.28-15.82,4.19,44.97,6.61,90.86,1.7,136.01,6.5-.18-1.4.47-3.76-.17-4.84ZM409.45,162.01c-47.2-16.31-78.78-71.53-133.99-60l12.98,4.51c40.68,24.84,67.42,50.48,117.81,56.2,1.1.12,3.42,1.15,3.2-.7ZM378.45,170.01c-55.49-5.45-86.28-72.37-144.99-62l21.67,8.81c24.06,11.83,41.99,32.57,66.65,43.35,17.31,7.57,34.96,10.98,53.92,11.18,1.32.01,2.2.88,2.75-1.34ZM252.45,197.01c-16.42-5.53-32.5-12.88-48.05-20.47-16.06-7.84-31.03-19.09-48.75-23.25-20.58-4.82-37.09.48-56.2,7.71-.26,1.68,2.37,1.03,3.51,1.02,7.84-.07,13.61-.97,21.96-.02,41.58,4.78,85.61,42.14,126.03,36.99,1.38-.18,2.98-.6,1.48-1.99ZM229.45,217.01c-36.23-13.28-67.39-36.89-106.62-41.88-23.75-3.02-45.16,1.17-66.36,11.88-.22,1.88,2.02.77,3.04.54,19.78-4.52,33.75-6.8,54.16-2.26,15.43,3.43,24.57,10.64,38.12,16.88,22.61,10.42,47.44,14.18,72.14,15.86,1.15.08,5.54.72,5.53-1.03Z"/><path fill="#26ffbe" d="M6.45,224c8.22-6.89,24.72-21.82,30.17-30.33,18.52-28.94,21.08-63.95,34.65-94.35,12.89-28.87,33.49-56.22,53.68-80.32l-20.25,46.75c-6.3,16.58-10.03,34.19-16.24,50.76-9.98,26.67-26.76,51.32-45.01,72.99-.16.74,1.05.68,1.48.49,1.05-.48,6.3-5.44,8.2-6.81,7.15-5.16,16.82-10.38,23.23-15.77,13.41-11.27,29.61-50.28,38.91-67.09,19.39-35.03,42.4-68.16,68.68-98.32l-4.33,11.67c-24.12,48.13-39.51,103.17-81.17,139.83-.16.75.97.64,1.48.48,5.61-1.81,22.95-12.5,27.03-16.97,15.37-16.86,26.46-40.66,39.67-59.33C187.32,48.48,217.1,22.8,244.44,0l-75.02,103.47c-11.35,12.28-23.88,23.16-36.97,33.52,39.72-15.74,80.49-29.77,122.99-35.98l-48.99,13.98c25.91,4.84,47.79,22.26,70.32,35.18,12.23,7.02,25.71,13.15,37.69,20.31,1.09.65,2.75,1.01,2.98,2.51-22.72-.05-44.18-9-63.67-19.82-22.08-12.26-43.53-34.69-70.74-31.09l-30.58,11.91c32.62-9.76,56.24,16.82,82.32,31.18,7.16,3.95,14.8,7.11,22,11l21.67,8.82c-22.08.39-43.44-6.26-63.35-15.13-18.36-8.18-57.22-33.82-76.08-30.79-6.03.97-29.75,13.74-36.58,17.41-21.69,11.65-43.87,26.03-61.98,42.51,23.79-9.12,42.69-6.97,65.98,1.53,20.25,7.38,39.67,17.4,59.75,25.25l25.26,8.22c-17.74,2.3-36.74-.14-54.01-4.48-31.9-8.01-59.97-29.22-94.38-25.41-13.73,1.52-19.32,8.43-28.12,17.88-4.96,5.32-9.41,11.36-13.99,17.01-3.01-7.52,1.86-8.43,4.56-12.49.67-1.01.69-2.12.95-2.51-1.54,1.29-3.25,2.36-4.5,4-.86-2.28,2.76-5.3,4.05-7.95,10.88-22.4,13.64-57.48,20.54-82.46,10.63-38.52,36.13-72.74,63.91-100.58-5.82,12.75-12.89,24.94-18.85,37.64C47.59,125.82,37.52,176.11,6.45,224Z"/><path fill="#26ffbe" d="M229.45,217.01c0,1.75-4.39,1.11-5.53,1.03-24.7-1.68-49.53-5.45-72.14-15.86-13.55-6.24-22.69-13.45-38.12-16.88-20.41-4.54-34.37-2.26-54.16,2.26-1.02.23-3.26,1.34-3.04-.54,21.2-10.72,42.61-14.91,66.36-11.88,39.23,5,70.39,28.6,106.62,41.88Z"/><path fill="#26ffbe" d="M362.45,12.01l-87.07,70.41c-18.58,10.81-38.93,18.79-59.92,23.57l31.89-20.6c17.85-12.28,31.51-28.37,49.58-40.42,19.83-13.22,43.27-24.64,65.52-32.96Z"/><path fill="#26ffbe" d="M252.45,197.01c1.5,1.39-.1,1.82-1.48,1.99-40.42,5.15-84.45-32.21-126.03-36.99-8.35-.96-14.12-.05-21.96.02-1.15,0-3.77.66-3.51-1.02,19.1-7.23,35.62-12.54,56.2-7.71,17.72,4.15,32.69,15.41,48.75,23.25,15.55,7.59,31.63,14.94,48.05,20.47Z"/><path fill="#26ffbe" d="M409.45,162.01c.21,1.86-2.11.83-3.2.7-50.39-5.72-77.13-31.36-117.81-56.2l-12.98-4.51c55.21-11.52,86.79,43.69,133.99,60Z"/><path fill="#26ffbe" d="M378.45,170.01c-.55,2.22-1.44,1.36-2.75,1.34-18.96-.2-36.61-3.61-53.92-11.18-24.65-10.78-42.58-31.52-66.65-43.35l-21.67-8.81c58.71-10.37,89.5,56.55,144.99,62Z"/><path fill="#26ffbe" d="M316.45,7.01l-30.31,20.18c-40.38,27.92-69.96,69.36-115.68,89.8,7.76-8.07,16.23-15.4,24.03-23.46,16.42-16.99,29.79-34.59,49.06-48.94,21.51-16.01,47.54-29,72.91-37.58Z"/><path fill="#26ffbe" d="M450.28,91.16c.64,1.08,0,3.44.17,4.84-45.16-4.8-91.04.1-136.01-6.5-.03-.91,13.83-3.77,15.82-4.19,34.29-7.21,74.26-9.12,107.96,1.42,1.8.56,11.67,3.78,12.06,4.43Z"/><path fill="#26ffbe" d="M413.45,44.01l-47.24,16.24c-30.53,11.89-59.72,28.49-92.75,32.74l37.97-21.51c31.85-15.23,67.14-22.85,102.02-27.47Z"/></g></svg>
+
+  <!-- Floating leaf shapes -->
+  <svg class="float-shape" id="floatLeaf1" style="top:8%; right:5%; width:180px; opacity:0.18" viewBox="0 0 214.47 255.35" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M130.47,8.67c-1.14-1.29-1.62-2.76-1.87-4.45l.88-4.23c-7.02,3.41-15.24,4.39-22.95,5.41-9.51,1.26-22.73.82-25.08,13.08-1.96,10.2,6.24,30.99,10.42,40.77,1.61,3.78,5.7,10.68,6.43,14.2.67,3.22-2.48,3.4-4.38,1.29-1.67-1.85-4.73-7.66-6.12-10.13-7.07-12.6-12.85-30.55-11.55-45.17.09-1.04,1.32-6.43,1.02-6.84-6.46,3.62-12.18,8.35-18.22,12.59-3.13,2.2-6.82,4.04-9.74,6.5-13.53,11.41-1.21,29.7,6.61,40.56,9.29,12.91,22.42,22.57,32.44,34.86,1.18,1.45,2.16,2.85,1.75,4.83-.59,2.89-3.57,1.47-5.18.4-3.67-2.43-9.65-8.45-13.07-11.69-9.66-9.13-20.53-20.98-26.86-32.71-3.84-7.12-5.76-15.1-6.66-23.12-.29-.03-.51,0-.77.13-1.91,1-6.1,7.14-7.58,9.18-3.79,5.2-7.96,11.06-11.35,16.5-7.31,11.74-6.17,19.19,3.07,29.12,8.25,8.86,20.09,18.79,30.48,24.96,6.31,3.75,16.88,8.54,22.12,13.21,2.37,2.11,3.85,6.48-.74,5.9-4.37-.55-17.83-9.39-22.01-12.27-16.05-11.06-28.77-22.98-40.14-38.78-.34-.48-1.55-2.68-1.83-2.82-.46-.23-.39.33-.46.56-1.92,6.56-3.33,11.2-4.27,18.16-.92,6.76-1.76,13.59-2.61,20.34-2.11,16.74,7.84,23.08,20.92,29.87,11.44,5.94,21.98,8.29,34.05,12.1,4.07,1.29,14.22,4.28,17.1,6.88,4.47,4.03-2.4,5.04-5.43,4.92-17.94-.72-35.7-5.97-51.1-15.17-4.59-2.74-9.21-6.92-13.66-10.06-.52-.37-3.64-2.68-3.95-2.36-.88,10.75,2.05,21.6,5.23,31.77,5,15.99,15.24,42.36,27.98,53.31,17.31,14.88,51.26,24.05,66.27,1.38,7.12-10.75,6.76-21.42,8.04-33.73.42-4.01.58-9.06,1.31-12.87.58-3.02,3.78-3.87,5.24-.91,5.29,21.84,7.32,49.7,36.63,48.45,16.16-.69,34.55-13.22,43.92-25.96,16.53-22.46,20.21-41.1,19.13-68.81-.2-5.23.32-9.57.52-14.68.09-2.1-.08-4.23-.01-6.33-.17-.2-1.43.85-1.67,1.04-17.24,13.36-36.73,29.53-58.66,34.17-3.17.67-9.64,2.08-11.29-1.63-.89-2,.94-3.45,2.54-4.28,8.1-4.22,20.03-6.4,28.84-9.83,12.34-4.81,31.95-17.28,36.03-30.49,2.85-9.21-.05-19.57-3.16-28.41-2.84-8.11-6.45-16.11-12.37-22.44-1.36,3.47-2.04,7.17-3.22,10.7-5.99,17.91-25.51,34.71-39.71,46.67-1.97,1.66-7.74,6.84-9.96,7.07-1.08.11-1.46.01-1.41-1.14.06-1.24,2.79-3.98,3.75-5.04,5.28-5.79,10.98-10.59,16.51-15.97,3.89-3.78,5.43-6.35,8.52-10.57,8.27-11.25,21.07-22.46,19.96-37.79-.5-6.95-6.34-14.55-11.48-18.95-.72-.61-4.89-4-5.54-3.36,0,.62.06,1.25-.06,1.87-4.33,22.83-14.02,40.24-30.97,56.05-1.4,1.31-5.17,4.87-7,4.75-3.04-.19-.28-3.74.54-4.9,4.62-6.51,11.66-12.66,16.85-18.79,7.61-8.98,17.25-29.56,13.18-41.19-3.57-10.2-15.97-13.35-24.33-18.47-2.69-1.64-7.89-5.01-9.88-7.27Z"/><path fill="#26ffbe" d="M130.47,8.67c1.99,2.25,7.19,5.62,9.88,7.27,8.36,5.12,20.76,8.27,24.33,18.47,4.08,11.63-5.57,32.21-13.18,41.19-5.19,6.13-12.24,12.28-16.85,18.79-.82,1.16-3.58,4.71-.54,4.9,1.84.12,5.6-3.45,7-4.75,16.95-15.81,26.64-33.23,30.97-56.05.12-.62.05-1.25.06-1.87.64-.64,4.82,2.74,5.54,3.36,5.14,4.39,10.98,12,11.48,18.95,1.11,15.33-11.69,26.54-19.96,37.79-3.1,4.21-4.64,6.78-8.52,10.57-5.53,5.39-11.23,10.18-16.51,15.97-.96,1.05-3.69,3.79-3.75,5.04-.06,1.15.33,1.25,1.41,1.14,2.22-.23,7.99-5.41,9.96-7.07,14.2-11.96,33.73-28.76,39.71-46.67,1.18-3.53,1.86-7.23,3.22-10.7,5.92,6.33,9.53,14.33,12.37,22.44,3.1,8.85,6.01,19.2,3.16,28.41-4.09,13.21-23.7,25.69-36.03,30.49-8.82,3.44-20.74,5.62-28.84,9.83-1.6.83-3.43,2.28-2.54,4.28,1.65,3.71,8.12,2.3,11.29,1.63,21.93-4.64,41.42-20.81,58.66-34.17.24-.19,1.5-1.23,1.67-1.04-.07,2.1.1,4.23.01,6.33-.21,5.12-.73,9.46-.52,14.68,1.08,27.71-2.59,46.35-19.13,68.81-9.38,12.74-27.77,25.27-43.92,25.96-29.31,1.25-31.35-26.62-36.63-48.45-1.47-2.97-4.66-2.11-5.24.91-.73,3.81-.89,8.86-1.31,12.87-1.29,12.31-.93,22.98-8.04,33.73-15.01,22.66-48.96,13.5-66.27-1.38-12.74-10.95-22.98-37.31-27.98-53.31-3.18-10.17-6.11-21.02-5.23-31.77.31-.32,3.43,2,3.95,2.36,4.45,3.14,9.07,7.32,13.66,10.06,15.39,9.2,33.16,14.46,51.1,15.17,3.03.12,9.9-.89,5.43-4.92-2.88-2.6-13.03-5.59-17.1-6.88-12.07-3.82-22.61-6.17-34.05-12.1-13.09-6.79-23.03-13.13-20.92-29.87.85-6.75,1.69-13.58,2.61-20.34.94-6.97,2.36-11.6,4.27-18.16.07-.24,0-.79.46-.56.28.14,1.48,2.34,1.83,2.82,11.37,15.8,24.1,27.72,40.14,38.78,4.18,2.88,17.64,11.72,22.01,12.27,4.6.58,3.12-3.79.74-5.9-5.24-4.67-15.81-9.46-22.12-13.21-10.39-6.17-22.24-16.1-30.48-24.96-9.25-9.94-10.38-17.38-3.07-29.12,3.39-5.44,7.56-11.3,11.35-16.5,1.48-2.04,5.68-8.17,7.58-9.18.26-.14.49-.16.77-.13.9,8.03,2.82,16,6.66,23.12,6.33,11.73,17.2,23.58,26.86,32.71,3.42,3.23,9.4,9.25,13.07,11.69,1.61,1.07,4.59,2.49,5.18-.4.4-1.98-.57-3.38-1.75-4.83-10.02-12.3-23.15-21.95-32.44-34.86-7.82-10.86-20.14-29.15-6.61-40.56,2.92-2.46,6.61-4.31,9.74-6.5,6.05-4.24,11.77-8.97,18.22-12.59.29.41-.93,5.79-1.02,6.84-1.3,14.61,4.48,32.56,11.55,45.17,1.38,2.47,4.45,8.27,6.12,10.13,1.9,2.11,5.05,1.93,4.38-1.29-.73-3.52-4.81-10.42-6.43-14.2-4.18-9.79-12.37-30.57-10.42-40.77,2.35-12.26,15.57-11.82,25.08-13.08,7.72-1.02,15.93-2,22.95-5.41l-.88,4.23c.24,1.69.73,3.16,1.87,4.45Z"/></g></svg>
+
+  <svg class="float-shape" id="floatBlob3" style="top:52%; left:2%; width:120px; opacity:0.14" viewBox="0 0 247.18 258.37" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M140.06,11.01c25.64,2.43,67.27,22.17,66.61,52.32-.18,8.26-6.22,20.13-10.8,26.98-5.05,7.55-22.29,22.26-21.78,30.12.1,1.62,2.54,6.37,3.96,7.07,8.55,4.16,22.81-12.47,27.43-18.58,12.58-16.65,21.29-38.66,8.58-57.91.75-.73,6.04,3.65,7.01,4.48,17.59,14.99,25.52,38.17,23.97,61-.31,4.57-2.25,9.25-2.06,14.03.21,5.06,3.38,10.6,3.95,16.11,2.85,27.36-20.22,63.06-45.35,73.41-2.3.95-16.52,4.44-16.51,5.47l12.57,20.46c-4.33,8.23-5.13-.16-10.58-.97l-1,3.01-9.51-17.97c-17.57,25.37-63.27,36.2-90.17,22.15-9.33-4.87-15.92-13.62-24.61-19.39-6.96-4.62-14.62-7.27-21.65-12.35-7.56-5.47-15.04-14.48-19.09-22.91l17.65,9.35c16.97,9.21,60.19,12.48,69.53-8.18,2.29-5.06,2.93-17.58-4.43-16.53-3.33.47-15.9,8.07-21.21,9.9-19.73,6.77-58.89,11.35-69.31-11.76-2.99-6.64-6.51-19.42-8.98-27.02C-.02,139.94-1.9,128.78,2.56,115c2.26,3.55,2.51,7.64,4.48,11.52,10.28,20.28,44.41,30.27,64.82,21.76,13.81-5.76,16.62-22.71-.25-24.33-17.58-1.68-27.9,4.34-46.77-4.23-12.2-5.54-19.48-11.65-17.51-25.98,2.16-15.66,9.37-30.33,17.33-43.67,9.38-15.74,24.56-31.21,25.42-50.08,7.84,2.83,16.13,5.34,24.51,5.98,12.32.94,26.82-2.32,38.01-1.01,10.38,1.22,19.13,23.27,19.27,32.53.15,9.79-8.95,27.3-3.82,35.03,4.04,6.09,15.51-1.99,19.01-6.05,14.65-16.99,10.28-42.3-6.98-55.47ZM91.77,47.72c5.64-5.01,3.6-23.45-.82-29.11-6.25-8.02-8.07,11.04-7.91,14.84.15,3.59,3.25,19.13,8.72,14.27ZM39.62,72.44c6.67,7.01,17.36,12.31,26.82,7.43,3.62-1.87,6.41-7.11,4.13-10.89-2.03-3.37-17.11-5.06-21.51-6.48-9.51-3.08-12.97-9.2-19.99-15.5,1.22,9.87,3.58,18.13,10.55,25.45ZM123.78,83.2c-9.29,2.1-9.28,21.81-2.16,22.83,11.88,1.69,15.03-25.74,2.16-22.83ZM115.79,141.74c3.35-3.54-.52-10.64-4.45-12.52-6.48-3.09-19.71-3.89-16.8,6.81,2.22,8.18,16.3,10.95,21.26,5.71ZM162.58,136.48c-14.69-.45-18.88,24.39-5.14,23.48,12.58-.83,16.16-23.15,5.14-23.48ZM188.37,181.31c-3.53,3.15-2.97,7.06,2.15,7.74,18.4,2.43,43.02-32.16,35.53-50.05-1.31-.97-6.06,11.29-6.82,12.67M126.3,177.24c-4.39,4.39-3.44,22.87,7.81,19.32,12.38-3.9-.23-26.9-7.81-19.32ZM97.32,234.74c6.65,6.8,29.17,1.68,32.99-7,3.65-8.31-7.62-7.18-12.73-6.72-4.67.42-20.85,5.67-21.24,10.62-.03,1.08.22,2.33.98,3.1Z"/></g></svg>
+  <svg class="float-shape" id="floatLeaf2" style="bottom:10%; right:12%; width:130px; opacity:0.16" viewBox="0 0 268.14 283.06" xmlns="http://www.w3.org/2000/svg"><g id="Layer_1-2"><path fill="#26ffbe" d="M177.47,130.11c11.53,9.32,25.76,15.19,37.74,23.73.71.5,1.7-.22,1.22,1.71l-74.17,81.32-32.79-13.76,27,18.53-22.98,24-44.02-19.52c11.69,8.84,25.44,14.87,37.71,22.75.97.63,1.79-.1,1.28,2.22-19.8,12.54-42.93,9.41-63.2-.27-2.76-1.32-14.78-9-16.19-8.79l-17.72,20.94c-6.37,1.08-6.09-7.9-4.36-11.85.18-.41,4.93-5.69,5.86-6.71.48-.53,2-1.81,3.27-3.16,1.57-1.67,3.51-3.07,4.86-5.14.81,3.32,3.01,2.91,2.51-.5-7.89-8.25-15.69-20.71-19.48-31.54-8.87-25.39-3.02-46.79,17.44-63.96l26.01,39-22.23-40.3-.3-3.66,38.04-43.03,24.49,41.99c-.04-2.84-1.52-5.39-2.52-7.96-4.33-11.13-12.32-24.53-15.52-35.5-.44-1.52-1.29-2.89-.54-4.55,21.93-25.64,45.97-49.44,70.58-72.52l2.49.58,30.04,41.96-25.45-48.36c14.65-12.29,32.74-24.01,51.93-26.18l18.52,32.56c1.18-.05.28-3.1.01-4.02-1.08-3.68-12.71-28.92-11.51-29.98,25.72-1.56,49.76,13.54,58.74,37.75,12.23,32.96-6.33,64.29-25.35,90.13-3.6,4.89-12.38,17.28-16.37,20.7-.64.55-1.04,1.41-2.06.98l-42.97-19.56Z"/></g></svg>
+
+  <div class="hero-eyebrow" id="heroEyebrow">Creative Studio · Berlin & Everywhere</div>
+
+  <h1 class="hero-headline" id="heroHeadline">
+    Design from<br>
+    <span class="accent">every</span> angle.
+  </h1>
+
+  <p class="hero-sub" id="heroSub">
+    We connect brand strategy, product design, and digital execution, so your business doesn't just look good. It performs.
+  </p>
+
+  <div class="hero-actions" id="heroActions">
+    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+      🚀 Start a Project
+    </button>
+    <button class="btn-ghost" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+      See our work
+    </button>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrapper">
+  <div class="marquee-track">
+    <span class="marquee-item">Shopify Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">CRO Optimised <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Mobile Commerce <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Custom Storefront <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Product Photography <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Checkout UX <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Consistency <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Analytics Ready <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Shopify Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">CRO Optimised <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Mobile Commerce <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Custom Storefront <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Product Photography <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Checkout UX <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Consistency <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Analytics Ready <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-left" data-reveal>
+    <div class="section-label">What we build</div>
+    <h2 class="section-title">Ecommerce that<br>earns its keep.</h2>
+    <div class="intro-stats">
+      <div class="stat-box">
+        <div class="stat-num">4<span>–6</span></div>
+        <div class="stat-label">Weeks to launch</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Custom theme</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" style="color:var(--purple)">CRO</div>
+        <div class="stat-label">Conversion first</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Generic templates</div>
+      </div>
+    </div>
+  </div>
+  <div class="intro-right" data-reveal>
+    <div class="intro-body">
+      <p>
+        Most ecommerce stores look the same. They're assembled from the same templates, with the same layout, the same trust badges in the same spot. Customers can feel it — and it costs you sales.
+      </p>
+      <p>
+        We build Shopify stores that are designed with your brand and your customer in mind. Every element — from the homepage hero to the checkout flow — is considered. The result is a store that builds trust, tells a story, and converts.
+      </p>
+      <p>
+        Our most recent project: <strong>Mestizen Perfumes</strong> — a D2C fragrance store designed to evoke sensory experience through a minimal, editorial aesthetic that makes every product feel like a luxury item.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section id="case-study">
+  <div class="section-label">Featured project</div>
+  <div class="case-grid">
+    <div class="case-info" data-reveal>
+      <h2 class="case-title">Mestizen Perfumes — <span>Where scent meets story.</span></h2>
+      <p class="case-desc">
+        A D2C fragrance brand needed a store that didn't just sell perfume — it needed to make you feel it before you could smell it. We designed an editorial Shopify storefront built around atmosphere, texture, and restraint.
+      </p>
+      <p class="case-desc">
+        Clean product pages, custom collection layouts, optimised mobile checkout, and a visual language borrowed from luxury editorial photography — all built to serve the product, not distract from it.
+      </p>
+      <div class="case-tags">
+        <span class="tag">Custom Shopify Theme</span>
+        <span class="tag">Editorial Design</span>
+        <span class="tag">Mobile-First</span>
+        <span class="tag">Checkout UX</span>
+        <span class="tag">Brand Strategy</span>
+      </div>
+      <a href="https://shop.mestizen.com/" target="_blank" class="case-link">
+        Visit shop.mestizen.com ↗
+      </a>
+    </div>
+    <div class="store-mockup" data-reveal>
+      <div class="browser-bar">
+        <div class="browser-dot" style="background:#FF5F57"></div>
+        <div class="browser-dot" style="background:#FEBC2E"></div>
+        <div class="browser-dot" style="background:#28C840"></div>
+        <div class="browser-url">shop.mestizen.com</div>
+      </div>
+      <img src="assets/mestizen-shopify.png" style="position:relative; width:100%;" alt="">
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-header" data-reveal>
+    <div class="section-label">How we work</div>
+    <h2 class="section-title">A store launch<br>in 4 clear stages.</h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step" data-reveal>
+      <div class="step-connector"></div>
+      <div class="step-num">01</div>
+      <div class="step-title">Brand & Store Strategy</div>
+      <p class="step-desc">We map your customer journey, analyse competitors, and define the positioning that makes your store feel unmistakably yours — before any design begins.</p>
+    </div>
+    <div class="process-step" data-reveal>
+      <div class="step-connector"></div>
+      <div class="step-num">02</div>
+      <div class="step-title">Design & UX</div>
+      <p class="step-desc">Full Figma designs for homepage, collection, product, cart, and checkout. Every screen optimised for conversion while looking exactly like your brand.</p>
+    </div>
+    <div class="process-step" data-reveal>
+      <div class="step-connector"></div>
+      <div class="step-num">03</div>
+      <div class="step-title">Shopify Build</div>
+      <p class="step-desc">Custom Shopify theme development. We build exactly what was designed — no template compromises, no generic sections. Apps integrated as needed.</p>
+    </div>
+    <div class="process-step" data-reveal>
+      <div class="step-num">04</div>
+      <div class="step-title">QA, Launch & Training</div>
+      <p class="step-desc">Full device and checkout testing, SEO foundations in place, store handed over with documentation and a training session for your team.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERSION -->
+<section id="conversion">
+  <div class="conversion-left" data-reveal>
+    <div class="section-label">What you get</div>
+    <h2 class="section-title">Designed to convert.<br>Built to scale.</h2>
+    <div class="cro-list">
+      <div class="cro-item">
+        <div class="cro-icon">🏠</div>
+        <div class="cro-text">
+          <h4>Homepage that captures & converts</h4>
+          <p>A hero that explains your brand instantly, social proof, featured products, and a clear path to purchase — structured for real customer behaviour.</p>
+        </div>
+      </div>
+      <div class="cro-item">
+        <div class="cro-icon">📦</div>
+        <div class="cro-text">
+          <h4>Product pages that sell themselves</h4>
+          <p>Photography-forward layouts, benefit-led copy structure, size guides, reviews integration, and upsell logic — all without feeling pushy.</p>
+        </div>
+      </div>
+      <div class="cro-item">
+        <div class="cro-icon">📱</div>
+        <div class="cro-text">
+          <h4>Mobile checkout built for thumbs</h4>
+          <p>Over 60% of ecommerce traffic is mobile. We design the cart and checkout experience specifically for mobile — not as an afterthought.</p>
+        </div>
+      </div>
+      <div class="cro-item">
+        <div class="cro-icon">📊</div>
+        <div class="cro-text">
+          <h4>Analytics & tracking setup</h4>
+          <p>GA4, Meta Pixel, and conversion event tracking configured so you can make data decisions from launch day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="conversion-right" data-reveal>
+    <div class="highlight-box">
+      <h3>Shopify — <span>the platform built for growth.</span></h3>
+      <p>Shopify's ecosystem gives you everything from payments to inventory to email marketing in one place. We configure it so it works for your business — not the other way around.</p>
+      <div class="shopify-badge">✦ Shopify — Commerce Made Easy</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-from">Starting from</div>
+      <div class="pricing-amount">€3,200</div>
+      <div class="pricing-desc">For a fully custom Shopify build with product pages, collection design, checkout UX, and launch support. Exact scope defined on a free discovery call.</div>
+      <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+        Book a free call →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- IDEAL FOR -->
+<section id="ideal">
+  <div data-reveal>
+    <div class="section-label">Who it's for</div>
+    <h2 class="section-title">For brands that take<br>their store seriously.</h2>
+  </div>
+  <div class="ideal-grid">
+    <div class="ideal-card" data-reveal>
+      <div class="icon">✨</div>
+      <h3>Brands launching their first D2C store</h3>
+      <p>You've got the product. Now you need a store that makes people feel it before they buy. We build the experience around your brand story.</p>
+    </div>
+    <div class="ideal-card" data-reveal>
+      <div class="icon">📈</div>
+      <h3>Existing stores that aren't converting</h3>
+      <p>Traffic is there, but sales aren't following. We audit, redesign, and rebuild the key pages that move the needle on conversion.</p>
+    </div>
+    <div class="ideal-card" data-reveal>
+      <div class="icon">🎁</div>
+      <h3>Product businesses ready to go premium</h3>
+      <p>Your product is premium — your store should match. We elevate the visual identity and UX to match where your brand wants to be.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="section-label">Let's build</div>
+  <h2 class="cta-headline">Ready to build a store<br>that <span>people love to buy from?</span></h2>
+  <p class="cta-sub">30-minute discovery call. No pitch, no pressure — just an honest conversation about your store and what it could be.</p>
+  <div class="cta-actions">
+    <a href="mailto:hello@mestizen.com" class="btn-big primary">Start your project →</a>
+    <a href="../../mestizen-studio.html#work" class="btn-big ghost">See all our work</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    Mestizen Studio
+    <small>Berlin · Design Without Borders</small>
+  </div>
+  <div class="footer-links">
+    <a href="../../mestizen-studio.html#about">About</a>
+    <a href="../../mestizen-studio.html#services">Services</a>
+    <a href="../../mestizen-studio.html#work">Work</a>
+    <a href="mailto:hello@mestizen.com">hello@mestizen.com</a>
+  </div>
+  <div class="footer-copy">© 2025 Mestizen Studio</div>
+</footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Cursor glow
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', e => {
+    gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.6, ease: 'power2.out' });
+  });
+
+  // Scrolled nav
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Hero entrance
+  gsap.set(['#heroEyebrow','#heroHeadline','#heroSub','#heroActions'], { opacity: 0, y: 40 });
+  const heroTl = gsap.timeline({ delay: 0.2 });
+  heroTl
+    .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+    .to('#heroHeadline', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+    .to('#heroSub', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+    .to('#heroActions', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
+
+  // Blob animation
+  gsap.to('.blob', {
+    scale: 1.15, duration: 4,
+    yoyo: true, repeat: -1, ease: 'sine.inOut',
+    stagger: 1.2, transformOrigin: 'center center'
+  });
+
+  // Floating leaves
+  gsap.to('#floatLeaf1', { y: -25, rotation: 8, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+  gsap.to('#floatLeaf2', { y: 20, rotation: -6, duration: 3.5, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.8 });
+
+  // Scroll reveals
+  const reveals = document.querySelectorAll('[data-reveal]');
+  reveals.forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 60 },
+      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 82%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // CTA glow pulse
+  gsap.to('.cta-glow', { scale: 1.2, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+</script>
+</body>
+</html>
