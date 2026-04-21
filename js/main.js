@@ -11,6 +11,9 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+// Back button fades in after hero entrance
+ gsap.to('#backBtn', { opacity: 1, duration: 0.5, ease: 'power2.out', delay: 1.0 });
+
 // Cursor glow
 const glow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', e => {

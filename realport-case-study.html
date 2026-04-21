@@ -23,17 +23,6 @@
   --rp-slate: #f4f6ff;
 }
 
-.cs-back {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  color: rgba(255,255,255,0.3); text-decoration: none;
-  padding: 5.5rem 4rem 0; position: relative; z-index: 1;
-  transition: color 0.2s;
-}
-.cs-back:hover { color: var(--rp-blue); }
-.cs-back svg { transition: transform 0.2s; }
-.cs-back:hover svg { transform: translateX(-3px); }
-
 /* HERO */
 .cs-hero {
   min-height: 96svh; position: relative;
@@ -321,7 +310,13 @@
     <button class="nav-cta" onclick="document.getElementById('cs-cta-section').scrollIntoView({behavior:'smooth'})">Let's Talk &rarr;</button>
   </div>
 </nav>
-
+<!-- FLOATING BACK BUTTON -->
+<a class="back-btn" id="backBtn" href="brand-discovery.html">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Brand Discovery
+</a>
 
 <!-- HERO -->
 <section class="cs-hero">
