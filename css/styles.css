@@ -82,6 +82,37 @@ nav.scrolled .nav-cta { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
 
 .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,245,160,0.4); }
 
+
+/* ── BACK BUTTON (floating below nav) ── */
+   .back-btn {
+     position: fixed;
+     top: calc(1.2rem + 28px + 1.2rem + 0.75rem); /* nav padding + logo height + nav padding + gap */
+     left: 4rem;
+     z-index: 99;
+     display: inline-flex; align-items: center; gap: 0.5rem;
+     background: rgba(255,255,255,0.12);
+     backdrop-filter: blur(12px);
+     -webkit-backdrop-filter: blur(12px);
+     border: 1px solid rgba(255,255,255,0.18);
+     color: rgba(255,255,255,0.75);
+     font-family: 'Manrope', sans-serif;
+     font-size: 0.75rem; font-weight: 700;
+     letter-spacing: 0.06em; text-transform: uppercase;
+     padding: 0.45rem 1rem 0.45rem 0.75rem;
+     border-radius: 100px;
+     text-decoration: none;
+     transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+     opacity: 0;
+   }
+   .back-btn:hover {
+     background: rgba(0,245,160,0.15);
+     border-color: rgba(0,245,160,0.4);
+     color: var(--mint);
+     transform: translateX(-2px);
+   }
+   .back-btn svg { flex-shrink: 0; }
+
+
 /* ── HERO ── */
 #hero {
   min-height: 100vh;
@@ -386,8 +417,8 @@ section { padding: 7rem 4rem; }
 }
 .work-card:nth-child(1) { grid-column: span 7; height: 380px; }
 .work-card:nth-child(2) { grid-column: span 5; height: 380px; }
-.work-card:nth-child(3) { grid-column: span 4; height: 320px; }
-.work-card:nth-child(4) { grid-column: span 8; height: 320px; }
+.work-card:nth-child(3) { grid-column: span 5; height: 380px; }
+.work-card:nth-child(4) { grid-column: span 7; height: 380px; }
 .work-bg {
   width: 100%; height: 100%;
   transition: transform 0.6s ease;

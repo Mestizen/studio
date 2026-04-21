@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Branding Work — Mestizen Studio</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -55,7 +54,7 @@
     }
     nav.scrolled {
       top: 10px; left: 50%;
-      transform: translateX(-50%);
+      /*transform: translateX(-50%);*/
       width: calc(100% - 5rem);
       padding: 0.65rem 2rem;
       background: rgba(18,18,36,0.88);
@@ -66,12 +65,12 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
     .nav-logo {
-      background-image: url(logo-color.svg);
+      background-image: url(assets/logo-gray.svg);
       background-repeat: no-repeat;
       background-size: 150px;
       width: 150px; height: 28px;
     }
-    nav.scrolled .nav-logo { background-image: url(logo-color.svg); }
+    nav.scrolled .nav-logo { background-image: url(assets/logo-color.svg); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: 0.88rem; font-weight: 500;
@@ -92,6 +91,35 @@
     nav.scrolled .nav-cta { border-color: var(--mint); color: var(--mint); }
     .nav-cta:hover { background: var(--ink); color: var(--white); }
     nav.scrolled .nav-cta:hover { background: var(--mint); color: var(--dark); }
+
+    /* ── BACK BUTTON (floating below nav) ── */
+       .back-btn {
+         position: fixed;
+         top: calc(1.2rem + 28px + 1.2rem + 0.75rem); /* nav padding + logo height + nav padding + gap */
+         left: 4rem;
+         z-index: 99;
+         display: inline-flex; align-items: center; gap: 0.5rem;
+         background: rgba(255,255,255,0.12);
+         backdrop-filter: blur(12px);
+         -webkit-backdrop-filter: blur(12px);
+         border: 1px solid var(--ink);
+         color: var(--ink);
+         font-family: 'Manrope', sans-serif;
+         font-size: 0.75rem; font-weight: 700;
+         letter-spacing: 0.06em; text-transform: uppercase;
+         padding: 0.45rem 1rem 0.45rem 0.75rem;
+         border-radius: 100px;
+         text-decoration: none;
+         transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+         opacity: 0;
+       }
+       .back-btn:hover {
+         background: rgba(0,245,160,0.15);
+         border-color: rgba(0,245,160,0.4);
+         color: var(--mint);
+         transform: translateX(-2px);
+       }
+       .back-btn svg { flex-shrink: 0; }
 
     /* ── PAGE HERO ── */
     .page-hero {
@@ -279,7 +307,7 @@
     }
     .thumb-realport svg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .thumb-karrecho {
-      background: linear-gradient(140deg, #0a1f12 0%, #153a22 40%, #1e5530 70%, #2d7a46 100%);
+    /*   background: linear-gradient(140deg, #0a1f12 0%, #153a22 40%, #1e5530 70%, #2d7a46 100%);*/
     }
     .thumb-karrecho svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
@@ -346,6 +374,14 @@
   <button class="nav-cta">Let's Talk →</button>
 </nav>
 
+<!-- FLOATING BACK BUTTON -->
+<a class="back-btn" id="backBtn" href="index.html#work">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Back to Work
+</a>
+
 <!-- PAGE HERO -->
 <header class="page-hero">
   <div class="section-label">Brand Identity</div>
@@ -354,7 +390,7 @@
       Brands that<br><em>actually</em> land.
     </h1>
     <p class="page-hero-sub">
-      Two brands. Two completely different worlds. One obsession: making every identity feel unmistakably <em>right</em> for the people it's made for.
+      Four brands. Four completely different worlds. One obsession: making every identity feel unmistakably <em>right</em> for the people it's made for.
     </p>
   </div>
   <div class="page-divider"></div>
@@ -482,7 +518,74 @@
         </div>
       </div>
     </a>
-
+    <!-- DMG — full width -->
+      <a href="karrecho-case-study.html" class="cs-card cs-card--wide" data-reveal>
+        <div class="cs-thumb">
+          <div class="cs-thumb-inner thumb-karrecho">
+          <div style="with:300px;"><img src="assets/karrecho/karrecho_thumbnail.png" style="width: 100%;" alt="Venezuelan Style Arepas"></div>
+          </div>
+          <div class="cs-thumb-overlay">
+            <div class="cs-overlay-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View Case Study
+            </div>
+          </div>
+          <div class="cs-thumb-actions">
+            <div class="cs-action-btn">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </div>
+            <div class="cs-action-btn">
+              <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="cs-meta">
+          <div class="cs-meta-left">
+            <div class="cs-project-name">Kärrecho</div>
+            <div class="cs-project-sub">Brand Identity · Strategy · Naming — Food</div>
+          </div>
+          <div class="cs-studio-pill">
+            <span class="cs-by">by</span>
+            <div class="cs-studio-icon">M/</div>
+            Mestizen Studio
+            <span class="cs-pro-badge">PRO</span>
+          </div>
+        </div>
+      </a>
+      <!-- KÄRRECHO — full width -->
+        <a href="dmg-case-study.html" class="cs-card cs-card--wide" data-reveal>
+          <div class="cs-thumb">
+            <div class="cs-thumb-inner thumb-karrecho">
+            <div style="with:300px;"><img src="assets/dmg/dmg_thumbnail.jpg" style="width: 100%;" alt="Loveo brand"></div>
+            </div>
+            <div class="cs-thumb-overlay">
+              <div class="cs-overlay-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Case Study
+              </div>
+            </div>
+            <div class="cs-thumb-actions">
+              <div class="cs-action-btn">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </div>
+              <div class="cs-action-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="cs-meta">
+            <div class="cs-meta-left">
+              <div class="cs-project-name">Dental Medical Group</div>
+              <div class="cs-project-sub">Brand Identity · Strategy · Naming — Healthcare</div>
+            </div>
+            <div class="cs-studio-pill">
+              <span class="cs-by">by</span>
+              <div class="cs-studio-icon">M/</div>
+              Mestizen Studio
+              <span class="cs-pro-badge">PRO</span>
+            </div>
+          </div>
+        </a>
   </div>
 </main>
 
@@ -510,6 +613,9 @@
     const s = window.scrollY > 60;
     if (s !== isScrolled) { isScrolled = s; nav.classList.toggle('scrolled', s); }
   }, { passive: true });
+
+  // Back button fades in after hero entrance
+   gsap.to('#backBtn', { opacity: 1, duration: 0.5, ease: 'power2.out', delay: 1.0 });
 
   gsap.fromTo('.section-label', { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out', delay: 0.15 });
   gsap.fromTo('.page-title',    { opacity: 0, y: 36  }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: 0.25 });

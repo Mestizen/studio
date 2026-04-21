@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kärrecho — Brand Concept Case Study · Mestizen Studio</title>
+  <meta name="description" content="Kärrecho brand identity — a cultural bridge between Venezuela and Berlin through Venezuelan street food. Case study by Mestizen Studio."/>
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Dancing Script as web-safe alternative for the Mix Kitsch hand script -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Manrope:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+
+<style>
+:root {
+  --kr-mint:   #v83ffe7;
+  --kr-mint:   #83ffe7;
+  --kr-black:  #231f20;
+  --kr-yellow: #ffe255;
+  --kr-orange: #ff8a57;
+  --kr-purple: #8b4ce5;
+  --kr-pink:   #f f3bb4;
+  --kr-pink:   #ff3bb4;
+  --kr-dark:   #0e0e0e;
+  --kr-ink:    #161616;
+  --kr-slate:  #f5f5f0;
+}
+
+/* ── BACK BUTTON (floating below nav) ── */
+   .back-btn {
+     position: fixed;
+     top: calc(1.2rem + 28px + 1.2rem + 0.75rem); /* nav padding + logo height + nav padding + gap */
+     left: 4rem;
+     z-index: 99;
+     display: inline-flex; align-items: center; gap: 0.5rem;
+     background: rgba(255,255,255,0.12);
+     backdrop-filter: blur(12px);
+     -webkit-backdrop-filter: blur(12px);
+     border: 1px solid rgba(255,255,255,0.18);
+     color: rgba(255,255,255,0.75);
+     font-family: 'Manrope', sans-serif;
+     font-size: 0.75rem; font-weight: 700;
+     letter-spacing: 0.06em; text-transform: uppercase;
+     padding: 0.45rem 1rem 0.45rem 0.75rem;
+     border-radius: 100px;
+     text-decoration: none;
+     transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+     opacity: 0;
+   }
+   .back-btn:hover {
+     background: rgba(0,245,160,0.15);
+     border-color: rgba(0,245,160,0.4);
+     color: var(--mint);
+     transform: translateX(-2px);
+   }
+   .back-btn svg { flex-shrink: 0; }
+
+/* ── HERO ── */
+.cs-hero {
+  min-height: 96svh; position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden; background: var(--kr-dark);
+}
+.cs-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 68% 30%, rgba(0,172,216,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 15% 72%, rgba(24,63,111,0.55) 0%, transparent 60%),
+    linear-gradient(165deg, #0d1a2e 0%, #101e35 100%);
+}
+.cs-hero-grid {
+  position: absolute; inset: 0; opacity: 0.035;
+  background-image:
+    linear-gradient(rgba(0,172,216,1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,172,216,1) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.cs-hero-content {
+  position: relative; z-index: 2;
+  padding: 0 4rem 5.5rem; max-width: 1200px;
+}
+.cs-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--kr-mint); margin-bottom: 1.75rem;
+}
+.cs-eyebrow::before { content:''; width:24px; height:1px; background:var(--kr-mint); }
+.cs-hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(3.8rem, 9vw, 8rem); font-weight: 800;
+  line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 2.5rem;
+}
+.cs-hero h1 em { font-style: normal; color: var(--kr-mint); }
+.cs-hero-meta { display: flex; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.cs-meta-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+.cs-meta-value { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+.cs-hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  opacity: 0.22; filter: saturate(0.65);
+}
+
+/* ── BRIEF ── */
+.cs-brief { background: var(--kr-slate); color: var(--kr-black); padding: 7rem 4rem; }
+.cs-brief-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.65fr; gap: 6rem; align-items: start;
+}
+.cs-section-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--kr-black); opacity: 0.45; margin-bottom: 1rem;
+}
+.cs-brief h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.03em; color: var(--kr-black);
+}
+.cs-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+.cs-pill {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.4rem 1rem; border-radius: 100px;
+  border: 1.5px solid rgba(14,14,14,0.2);
+  color: var(--kr-black); background: rgba(14,14,14,0.06);
+}
+.cs-brief-body p {
+  font-size: 1.05rem; line-height: 1.78; color: rgba(14,14,14,0.62); margin-bottom: 1.25rem;
+}
+.cs-brief-body p:last-child { margin-bottom: 0; }
+
+/* ── LOGO PANEL ── */
+.cs-logo-panel {
+  background: var(--kr-black); padding: 5.5rem 4rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-logo-panel img { width: 100%; max-width: 360px; height: auto; }
+
+/* ── DARK/LIGHT SECTIONS ── */
+.cs-dark { background: var(--kr-ink); padding: 7rem 4rem; }
+.cs-dark-inner { max-width: 1200px; margin: 0 auto; }
+.cs-light { background: var(--kr-slate); color: var(--kr-black); padding: 7rem 4rem; }
+.cs-light-inner { max-width: 1200px; margin: 0 auto; }
+.cs-mint-section { background: var(--kr-mint); color: var(--kr-black); padding: 7rem 4rem; }
+.cs-mint-inner { max-width: 1200px; margin: 0 auto; }
+
+.cs-section-num {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--kr-mint); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.cs-section-num::after { content:''; width:32px; height:1px; background:var(--kr-mint); opacity:0.5; }
+.cs-light .cs-section-num,
+.cs-mint-section .cs-section-num { color: var(--kr-black); opacity: 0.55; }
+.cs-light .cs-section-num::after,
+.cs-mint-section .cs-section-num::after { background: var(--kr-black); opacity: 0.3; }
+.cs-section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.03em;
+}
+.cs-light .cs-section-title,
+.cs-mint-section .cs-section-title { color: var(--kr-black); }
+.cs-section-sub {
+  font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.42);
+  max-width: 580px; margin-top: 0.75rem;
+}
+.cs-light .cs-section-sub,
+.cs-mint-section .cs-section-sub { color: rgba(14,14,14,0.6); }
+.cs-header-group { margin-bottom: 3.5rem; }
+
+/* ── LOGO VARIANTS ── */
+.cs-logo-split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.cs-logo-panel-sm {
+  border-radius: 18px; padding: 3rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.07); min-height: 200px;
+}
+.cs-logo-panel-sm img { width: 100%; max-width: 260px; height: auto; }
+
+/* ── NAMING SECTION ── */
+.cs-naming-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.cs-naming-card {
+  border-radius: 20px; padding: 2.5rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.03);
+}
+.cs-naming-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.1rem; font-weight: 800; color: var(--kr-mint);
+  margin-bottom: 0.75rem;
+}
+.cs-naming-card p {
+  font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.45);
+}
+.cs-naming-transform {
+  margin-top: 3rem; padding: 3rem;
+  border-radius: 20px; background: rgba(131,255,231,0.05);
+  border: 1px solid rgba(131,255,231,0.15);
+  display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap;
+}
+.cs-transform-step {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center;
+}
+.cs-transform-word {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 800; color: #fff;
+}
+.cs-transform-word.highlight { color: var(--kr-mint); }
+.cs-transform-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.cs-transform-arrow {
+  font-size: 1.5rem; color: rgba(255,255,255,0.2); margin-top: -0.5rem;
+}
+
+/* ── COLOR TOKENS ── */
+.cs-color-tokens {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-top: 1.5rem;
+}
+.cs-color-token {
+  border-radius: 16px; padding: 1.75rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
+}
+.cs-swatch { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 1rem; }
+.cs-token-name {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--kr-mint); margin-bottom: 0.25rem;
+}
+.cs-token-hex {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1rem; font-weight: 700; color: #fff;
+}
+.cs-token-ref { font-size: 0.73rem; color: rgba(255,255,255,0.3); margin-top: 0.2rem; }
+/* Color image panel */
+.cs-palette-wrap {
+  background: #fff; border-radius: 20px; overflow: hidden;
+  margin-top: 3rem; box-shadow: 0 4px 40px rgba(0,0,0,0.3);
+}
+.cs-palette-wrap img { width: 100%; display: block; }
+
+/* ── TYPOGRAPHY ── */
+.cs-type-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; margin-top: 3.5rem;
+}
+.cs-type-card {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.03);
+  padding: 2.5rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.cs-type-card:hover {
+  border-color: rgba(131,255,231,0.3);
+  background: rgba(131,255,231,0.04);
+}
+.cs-type-card-tag {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--kr-mint); display: flex; align-items: center; gap: 0.6rem;
+}
+.cs-type-card-tag::after {
+  content: ''; flex: 0 0 20px; height: 1px; background: var(--kr-mint); opacity: 0.45;
+}
+.cs-type-display-helvetica {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700;
+  font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+  line-height: 0.95; letter-spacing: -0.03em; color: #fff;
+}
+.cs-type-display-script {
+  font-family: 'Dancing Script', cursive; font-weight: 700;
+  font-size: clamp(2.6rem, 3.8vw, 3.8rem);
+  line-height: 0.95; color: rgba(255,255,255,0.85);
+}
+.cs-type-meta {
+  border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.cs-type-weight {
+  font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.5);
+}
+.cs-type-desc {
+  font-size: 0.8rem; line-height: 1.55; color: rgba(255,255,255,0.3);
+}
+
+/* ── IDENTITY MARKERS ── */
+.cs-markers { background: var(--kr-ink); padding: 0 4rem 7rem; }
+.cs-markers-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 1px; background: rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden;
+}
+.cs-marker {
+  padding: 2.25rem 1.5rem; background: var(--kr-ink);
+  display: flex; flex-direction: column; gap: 0.65rem; transition: background 0.3s;
+}
+.cs-marker:hover { background: rgba(131,255,231,0.07); }
+.cs-marker-icon { font-size: 1.3rem; line-height: 1; }
+.cs-marker-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1rem; font-weight: 800; color: #fff;
+}
+.cs-marker-desc { font-size: 0.78rem; line-height: 1.55; color: rgba(255,255,255,0.38); }
+
+/* ── SCREENS / MOCKUPS ── */
+.cs-screens {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.cs-screen-card {
+  border-radius: 20px; overflow: hidden; position: relative;
+  border: 1px solid rgba(131,255,231,0.1);
+}
+.cs-screen-card img { width: 100%; display: block; }
+.cs-screen-label {
+  position: absolute; bottom: 1rem; left: 1.25rem;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); background: rgba(14,14,14,0.75);
+  backdrop-filter: blur(8px); padding: 0.3rem 0.75rem; border-radius: 100px;
+}
+
+/* ── STATS ── */
+.cs-stats { background: var(--kr-mint); padding: 5rem 4rem; }
+.cs-stats-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+}
+.cs-stat-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.5rem,4vw,3.2rem); font-weight: 800;
+  color: var(--kr-black); line-height: 1; letter-spacing: -0.04em; margin-bottom: 0.35rem;
+}
+.cs-stat-label { font-size: 0.8rem; font-weight: 600; color: rgba(14,14,14,0.6); line-height: 1.45; }
+
+/* ── FULL BLEED ── */
+.cs-billboard { position: relative; overflow: hidden; }
+.cs-billboard2 { position: relative; overflow: hidden; }
+.cs-billboard img { width: 100%; display: block; max-height: 300px; object-fit: cover; }
+.cs-billboard2 img { width: 100%; display: block; max-height: 600px; object-fit: cover; }
+.cs-billboard-cap {
+  position: absolute; bottom: 2rem; left: 4rem;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 0.55rem;
+}
+.cs-billboard-cap::before { content:''; width:18px; height:1px; background:rgba(255,255,255,0.55); }
+.cs-sign img {
+  width: 100%; display: block; max-height: 580px;
+  object-fit: cover; object-position: center 20%;
+}
+/* ── EMOJI FEATURE ── */
+.cs-emoji-panel {
+  background: var(--kr-mint);
+  padding: 5rem 4rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-emoji-panel img { width: 100%; max-width: 720px; display: block; }
+
+/* ── CTA ── */
+.cs-cta {
+  text-align: center; padding: 8rem 4rem;
+  background: var(--kr-dark); position: relative; overflow: hidden;
+}
+.cs-cta-glow {
+  position: absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:700px; height:700px; border-radius:50%;
+  background: radial-gradient(circle, rgba(131,255,231,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cs-cta h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.5rem,5vw,4rem); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.25rem;
+}
+.cs-cta h2 span { color: var(--kr-mint); }
+.cs-cta p {
+  font-size: 1rem; color: rgba(255,255,255,0.42);
+  max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.7;
+}
+.cs-cta-actions {
+  display: flex; gap: 1rem; justify-content: center;
+  flex-wrap: wrap; position: relative; z-index: 1;
+}
+
+/* ── RENPONSIVE ── */
+@media (max-width: 1024px) {
+  .cs-back { padding: 5rem 2.5rem 0; }
+  .cs-hero-content, .cs-brief, .cs-dark, .cs-light,
+  .cs-mint-section, .cs-stats, .cs-markers, .cs-cta,
+  .cs-logo-panel, .cs-emoji-panel { padding-left: 2.5rem; padding-right: 2.5rem; }
+  .cs-brief-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cs-stats-inner { grid-template-columns: repeat(2,1fr); }
+  .cs-markers-grid { grid-template-columns: repeat(3,1fr); }
+  .cs-color-tokens { grid-template-columns: repeat(2,1fr); }
+  .cs-type-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .cs-back { padding: 5rem 1.5rem 0; }
+  .cs-hero-content { padding: 0 1.5rem 3.5rem; }
+  .cs-brief, .cs-dark, .cs-light, .cs-mint-section, .cs-stats,
+  .cs-markers, .cs-cta, .cs-logo-panel, .cs-emoji-panel { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .cs-hero-meta { gap: 1.5rem; }
+  .cs-logo-split, .cs-screens, .cs-naming-grid { grid-template-columns: 1fr; }
+  .cs-color-tokens { grid-template-columns: 1fr 1fr; }
+  .cs-stats-inner { grid-template-columns: 1fr 1fr; }
+  .cs-markers-grid { grid-template-columns: repeat(2,1fr); }
+  .cs-billboard-cap { left: 1.5rem; }
+  .cs-transform-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo"></div>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">Acerca de</a></li>
+    <li><a href="../index.html#services">Servicios</a></li>
+    <li><a href="../index.html#work">Proyectos</a></li>
+    <li><a href="../index.html#manifesto">Manifiesto</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="../karrecho-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">EN</a>
+    <button class="nav-cta" onclick="document.getElementById('cs-cta-section').scrollIntoView({behavior:'smooth'})">Let's Talk &rarr;</button>
+  </div>
+</nav>
+
+<!-- FLOATING BACK BUTTON -->
+<a class="back-btn" id="backBtn" href="brand-discovery.html">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Brand Discovery
+</a>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="cs-hero-bg"></div>
+  <img class="cs-hero-img" src="../assets/karrecho/Karrecho-2019-entradas-42.jpg" alt="Loveo brand in use">
+  <div class="cs-hero-grid"></div>
+  <div class="cs-hero-content">
+    <div class="cs-eyebrow">Food Brand &middot; Berlin &middot; Venezuela</div>
+    <h1 id="cs-hero-title">So damn<br><em>good.</em></h1>
+    <div class="cs-hero-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Cliente</span>
+        <span class="cs-meta-value">Kärrecho</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Sector</span>
+        <span class="cs-meta-value">Food &amp; Beverage &middot; Street Food</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Alcance</span>
+        <span class="cs-meta-value">Brand Concept &middot; Identity System</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Market</span>
+        <span class="cs-meta-value">Berlin, Germany</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIEF -->
+<section class="cs-brief">
+  <div class="cs-brief-inner">
+    <div>
+      <div class="cs-section-tag">The Concept</div>
+      <h2>A cultural mirror of Venezuela.</h2>
+      <div class="cs-pills">
+        <span class="cs-pill">Culture</span>
+        <span class="cs-pill">Warmth</span>
+        <span class="cs-pill">Identity</span>
+        <span class="cs-pill">Boldness</span>
+        <span class="cs-pill">Community</span>
+      </div>
+    </div>
+    <div class="cs-brief-body">
+      <p>K&auml;rrecho was conceived as a cultural mirror of Venezuela &mdash; past, present, and future. Not leaning into clich&eacute;s, but reflecting a more complete and nuanced identity: a country shaped by creativity, resilience, and optimism. The same Venezuela that contributed to the idea of freedom in the Americas and produced influential artists like Carlos Cruz-Diez.</p>
+      <p>Beyond achievements, K&auml;rrecho is rooted in something deeply human: the warmth of its people. Venezuelans are known for their openness, hospitality, and their natural inclination to make others feel at home. K&auml;rrecho aimed to translate that feeling into a physical space &mdash; a place where both Venezuelans and Germans could connect, share, and feel welcome.</p>
+      <p>Born from a simple observation: Berlin's culinary scene lacked Venezuelan representation. In a city known for its diversity, Venezuelan street food was virtually absent. This gap presented a clear opportunity &mdash; to introduce a cuisine defined by bold flavours, vibrant ingredients, and a strong sense of identity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO PRIMARY -->
+<div class="cs-logo-panel">
+  <img src="../assets/karrecho/logo-neg.png" alt="K&auml;rrecho primary logo">
+</div>
+
+<!-- 01 NAMING STRATEGY -->
+<section class="cs-dark">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">01 &mdash; Naming Strategy</div>
+      <h2 class="cs-section-title">Two cultures.<br>One name.</h2>
+      <p class="cs-section-sub">The name emerged from the need to connect two audiences &mdash; German and Venezuelan &mdash; through a shared emotional meaning that feels native to both.</p>
+    </div>
+
+    <div class="cs-naming-grid">
+      <div class="cs-naming-card">
+        <h3>The Origin</h3>
+        <p>The concept reinterprets a familiar Venezuelan expression &mdash; <em style="color:rgba(255,255,255,0.7)">"&iexcl;Qu&eacute; arrecho!"</em> &mdash; commonly used to describe something impressive or exciting. A phrase alive with energy and emotion.</p>
+      </div>
+      <div class="cs-naming-card">
+        <h3>The Transformation</h3>
+        <p>Through phonetic and visual transformation, the expression was adapted to resonate within a German context &mdash; preserving its original emotional meaning while feeling instantly familiar to a new audience.</p>
+      </div>
+      <div class="cs-naming-card">
+        <h3>The &Auml; (Umlaut)</h3>
+        <p>The use of <em style="color:var(--kr-mint)">ä</em> reflects German pronunciation of the <em>ae</em> sound &mdash; a subtle but powerful linguistic bridge that signals cultural fluency without forcing anything.</p>
+      </div>
+      <div class="cs-naming-card">
+        <h3>The K</h3>
+        <p>Replacing <em style="color:var(--kr-mint)">Q with K</em> reinforces familiarity for a German-speaking audience. A single letter change that makes the word feel native, not foreign.</p>
+      </div>
+    </div>
+
+    <div class="cs-naming-transform">
+      <div class="cs-transform-step">
+        <div class="cs-transform-word">&iexcl;Qu&eacute; arrecho!</div>
+        <div class="cs-transform-label">Venezuelan expression</div>
+      </div>
+      <div class="cs-transform-arrow">&rarr;</div>
+      <div class="cs-transform-step">
+        <div class="cs-transform-word">Kaerrecho</div>
+        <div class="cs-transform-label">Phonetic adaptation</div>
+      </div>
+      <div class="cs-transform-arrow">&rarr;</div>
+      <div class="cs-transform-step">
+        <div class="cs-transform-word highlight">K&auml;rrecho</div>
+        <div class="cs-transform-label">Final name</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 LOGO SYSTEM -->
+<section class="cs-dark" style="padding-top:0;">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">02 &mdash; Logo System</div>
+      <h2 class="cs-section-title">One mark.<br>Every context.</h2>
+      <p class="cs-section-sub">The double-line symbol &mdash; two parallel strokes inside a circle &mdash; is instantly graphic and culturally flexible. Minimal enough to work anywhere. Distinctive enough to own.</p>
+    </div>
+    <div class="cs-logo-split">
+      <div class="cs-logo-panel-sm" style="background:#231f20;">
+        <img src="../assets/karrecho/logo-neg.png" alt="K&auml;rrecho logo on dark">
+      </div>
+      <div class="cs-logo-panel-sm" style="background:#fff;">
+        <img src="../assets/karrecho/logo_horizon-black.png" alt="K&auml;rrecho horizontal logo black">
+      </div>
+      <div class="cs-logo-panel-sm" style="background:#83ffe7;">
+        <img src="../assets/karrecho/logo_horizon-black.png" alt="K&auml;rrecho logo on mint" style="filter:invert(0);">
+      </div>
+      <div class="cs-logo-panel-sm" style="background:#FFE255;">
+        <img src="../assets/karrecho/logo-isotipo.png" alt="K&auml;rrecho isotipo" style="max-width:120px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY MARKERS -->
+<div class="cs-markers">
+  <div class="cs-markers-grid">
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x1F1FB;&#x1F1EA;</div>
+      <div class="cs-marker-title">Venezuelan</div>
+      <div class="cs-marker-desc">Rooted in Venezuelan culture, food, and creative energy.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x1F1E9;&#x1F1EA;</div>
+      <div class="cs-marker-title">Berliner</div>
+      <div class="cs-marker-desc">Designed to speak fluently to a German-speaking urban audience.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x2665;</div>
+      <div class="cs-marker-title">Warm</div>
+      <div class="cs-marker-desc">Hospitality and human connection at the core of every touchpoint.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x26A1;</div>
+      <div class="cs-marker-title">Bold</div>
+      <div class="cs-marker-desc">Vibrant, expressive, and unapologetically full of energy.</div>
+    </div>
+    <div class="cs-marker">
+      <div class="cs-marker-icon">&#x1F33F;</div>
+      <div class="cs-marker-title">Alive</div>
+      <div class="cs-marker-desc">Tropical inspiration &mdash; organic shapes, plants, and street culture.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 COLOR SYSTEM -->
+<section class="cs-dark">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">03 &mdash; Color System</div>
+      <h2 class="cs-section-title">Vibrant, expressive,<br>and intentional.</h2>
+      <p class="cs-section-sub">The palette was designed to capture the vibrant spirit of Venezuelan culture while staying visually striking within Berlin's urban context. Bold saturated tones balanced with grounding darks.</p>
+    </div>
+    <div class="cs-color-tokens">
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#83ffe7;"></div>
+        <div class="cs-token-name">Primary Mint</div>
+        <div class="cs-token-hex">#83FFE7</div>
+        <div class="cs-token-ref">Tropical &middot; Fresh &middot; Identity</div>
+      </div>
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#231f20;"></div>
+        <div class="cs-token-name">Secondary Black</div>
+        <div class="cs-token-hex">#231F20</div>
+        <div class="cs-token-ref">Grounding &middot; Contrast &middot; Precision</div>
+      </div>
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#ffe255;"></div>
+        <div class="cs-token-name">Tertiary Yellow</div>
+        <div class="cs-token-hex">#FFE255</div>
+        <div class="cs-token-ref">Energy &middot; Warmth &middot; Street</div>
+      </div>
+      <div class="cs-color-token">
+        <div class="cs-swatch" style="background:#8b4ce5;"></div>
+        <div class="cs-token-name">Custom 2</div>
+        <div class="cs-token-hex">#8B4CE5</div>
+        <div class="cs-token-ref">Culture &middot; Depth &middot; Expression</div>
+      </div>
+    </div>
+    <div class="cs-palette-wrap">
+      <img src="../assets/karrecho/Color_Palette.png" alt="K&auml;rrecho full color palette">
+    </div>
+  </div>
+</section>
+
+<!-- 04 TYPOGRAPHY -->
+<section class="cs-dark" style="padding-top:0;">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">04 &mdash; Typography</div>
+      <h2 class="cs-section-title">Estructura meets<br>expression.</h2>
+      <p class="cs-section-sub">Two typefaces working in tension &mdash; the neutrality of Helvetica Neue anchors the brand while Mix Kitsch, a hand-crafted script, brings the warmth and spontaneity of Venezuelan character.</p>
+    </div>
+    <div class="cs-type-grid">
+      <div class="cs-type-card">
+        <div class="cs-type-card-tag">Corporate &mdash; Primary</div>
+        <div class="cs-type-display-helvetica">Helvetica Neue</div>
+        <div class="cs-type-meta">
+          <div class="cs-type-weight">Bold &middot; Regular &middot; Light</div>
+          <div class="cs-type-desc">Chosen for its neutrality, legibility, and universal familiarity &mdash; a classic that lets the brand's personality lead without the type competing for attention.</div>
+        </div>
+      </div>
+      <div class="cs-type-card">
+        <div class="cs-type-card-tag">Complementary &mdash; Script</div>
+        <div class="cs-type-display-script">Mix Kitsch</div>
+        <div class="cs-type-meta">
+          <div class="cs-type-weight">Handmade &middot; Expressive</div>
+          <div class="cs-type-desc">A hand-crafted script that injects cultural energy, warmth, and spontaneity. Used for headline moments, campaign lines, and wherever the brand needs to feel alive and human.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREPA EMOJI FEATURE -->
+<div class="cs-emoji-panel">
+  <img src="../assets/karrecho/Arepa_Emoji.png" alt="K&auml;rrecho arepa emoji mascot">
+</div>
+
+<!-- 05 BRAND IN ACTION -->
+<section class="cs-dark">
+  <div class="cs-dark-inner">
+    <div class="cs-header-group">
+      <div class="cs-section-num">05 &mdash; Brand in Action</div>
+      <h2 class="cs-section-title">The identity across<br>every touchpoint.</h2>
+      <p class="cs-section-sub">From street food signage to printed collateral and stickers &mdash; the K&auml;rrecho identity is built to live in the city, on the street, and in people's hands.</p>
+    </div>
+    <div class="cs-screens">
+      <div class="cs-screen-card">
+        <img src="../assets/karrecho/Avocado_Postal_Mockup.png" alt="K&auml;rrecho postcard mockup" loading="lazy">
+        <div class="cs-screen-label">Print &middot; Postcards</div>
+      </div>
+      <div class="cs-screen-card">
+        <img src="../assets/karrecho/Icons_Postcards_Mockup.png" alt="K&auml;rrecho icon postcards" loading="lazy">
+        <div class="cs-screen-label">Print &middot; Brand Collateral</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- STATS -->
+<div class="cs-stats">
+  <div class="cs-stats-inner">
+    <div>
+      <div class="cs-stat-num">2</div>
+      <div class="cs-stat-label">Cultures bridged by a single name and identity</div>
+    </div>
+    <div>
+      <div class="cs-stat-num">6+</div>
+      <div class="cs-stat-label">Brand colors spanning primary, secondary, and custom palette</div>
+    </div>
+    <div>
+      <div class="cs-stat-num">1</div>
+      <div class="cs-stat-label">Symbol instantly recognizable across all applications</div>
+    </div>
+    <div>
+      <div class="cs-stat-num">&#x221E;</div>
+      <div class="cs-stat-label">Expressive language rooted in Venezuelan street culture</div>
+    </div>
+  </div>
+</div>
+<section class="cs-mockup" style="display: flex;">
+  <!-- FOOD TRUCK -->
+  <div class="cs-billboard2">
+    <img src="../assets/karrecho/Food_Truck_Mockup_2.png" alt="K&auml;rrecho food truck" loading="lazy">
+    <div class="cs-billboard-cap">Environmental &middot; Food Truck</div>
+  </div>
+
+  <!-- SIGN -->
+  <div class="cs-billboard2">
+    <img src="../assets/karrecho/Square_Sign_Mockup.png" alt="K&auml;rrecho shop sign" loading="lazy">
+    <div class="cs-billboard-cap">Signage &middot; Retail</div>
+  </div>
+</section>
+
+<!-- MENU + STICKERS -->
+<section class="cs-dark">
+  <div class="cs-dark-inner">
+    <div class="cs-screens">
+      <div class="cs-screen-card">
+        <img src="../assets/karrecho/Menu_Mockup.png" alt="K&auml;rrecho menu" loading="lazy">
+        <div class="cs-screen-label">Print &middot; Menu</div>
+      </div>
+      <div class="cs-screen-card">
+        <img src="../assets/karrecho/Stickers_on_a_Bag_Mockup.png" alt="K&auml;rrecho stickers" loading="lazy">
+        <div class="cs-screen-label">Packaging &middot; Stickers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MOCKUP ══ -->
+<section class="cs-mockup" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+  <!-- BROCHURE -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho01.jpg" alt="DMG brand brochure mockup" loading="lazy">
+    <div class="cs-billboard-cap">Brand collateral</div>
+  </div>
+
+  <!-- VEHICLE SIDE -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho02.jpg" alt="DMG vehicle livery side view" loading="lazy">
+  </div>
+
+  <!-- VEHICLE FRONT -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho03.jpg" alt="DMG vehicle livery front view" loading="lazy">
+    <div class="cs-billboard-cap">Vehicle livery</div>
+  </div>
+  <!-- BROCHURE -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho04.jpg" alt="DMG brand brochure mockup" loading="lazy">
+    <div class="cs-billboard-cap">Brand collateral</div>
+  </div>
+  <!-- VEHICLE FRONT -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho06.jpg" alt="DMG vehicle livery front view" loading="lazy">
+    <div class="cs-billboard-cap">Vehicle livery</div>
+  </div>
+  <!-- VEHICLE FRONT -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho09.jpg" alt="DMG vehicle livery front view" loading="lazy">
+    <div class="cs-billboard-cap">Vehicle livery</div>
+  </div>
+
+  <!-- VEHICLE SIDE -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho05.jpg" alt="DMG vehicle livery side view" loading="lazy">
+  </div>
+
+  <!-- VEHICLE FRONT -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho08.jpg" alt="DMG vehicle livery front view" loading="lazy">
+    <div class="cs-billboard-cap">Vehicle livery</div>
+  </div>
+
+  <!-- VEHICLE SIDE -->
+  <div class="cs-billboard" style="max-height:300px;">
+    <img src="../assets/karrecho/karrecho07.jpg" alt="DMG vehicle livery side view" loading="lazy">
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cs-cta" id="cs-cta-section">
+  <div class="cs-cta-glow"></div>
+  <div class="section-label" style="display:flex;justify-content:center;margin-bottom:1.5rem;">Let&rsquo;s work together</div>
+  <h2>¿Listo para construir una marca<br><span>que valga la pena recordar?</span></h2>
+  <p>Every strong brand starts with a clear conversation. Book a free 30-minute discovery call &mdash; no pitch, no pressure.</p>
+  <div class="cs-cta-actions">
+    <button class="btn-big primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/solrac139/30min'});return false;">
+      &#128197; Book a free call
+    </button>
+    <a class="btn-big ghost" href="../../brand-identity.html">Our brand services &rarr;</a>
+  </div>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    Mestizen Studio
+    <small>Multidisciplinary Design &#127758; Berlin | Everywhere</small>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html">Inicio</a>
+    <a href="../index.html#services">Servicios</a>
+    <a href="../index.html#work">Proyectos</a>
+    <a href="../index.html#manifesto">Manifiesto</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Mestizen Studio.<br>All rights irreverently reserved &#128521;</div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Back button fades in after hero entrance
+ gsap.to('#backBtn', { opacity: 1, duration: 0.5, ease: 'power2.out', delay: 1.0 });
+
+gsap.fromTo('#cs-hero-title',
+  { opacity: 0, y: 60 },
+  { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', delay: 0.3 }
+);
+gsap.fromTo('.cs-eyebrow',
+  { opacity: 0, x: -20 },
+  { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 }
+);
+gsap.fromTo('.cs-hero-meta',
+  { opacity: 0, y: 20 },
+  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.55 }
+);
+
+['cs-brief','cs-logo-panel','cs-dark','cs-light','cs-mint-section',
+ 'cs-stats','cs-billboard','cs-sign','cs-cta','cs-emoji-panel'].forEach(function(cls) {
+  document.querySelectorAll('.' + cls).forEach(function(el) {
+    gsap.fromTo(el,
+      { opacity: 0, y: 36 },
+      { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 87%' } }
+    );
+  });
+});
+
+gsap.fromTo('.cs-logo-panel-sm',
+  { opacity: 0, y: 28, scale: 0.97 },
+  { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cs-logo-split', start: 'top 82%' } }
+);
+gsap.fromTo('.cs-screen-card',
+  { opacity: 0, y: 28 },
+  { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-screens', start: 'top 82%' } }
+);
+gsap.fromTo('.cs-marker',
+  { opacity: 0, y: 22 },
+  { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-markers-grid', start: 'top 84%' } }
+);
+gsap.fromTo('.cs-stat-num',
+  { opacity: 0, y: 18 },
+  { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-stats', start: 'top 85%' } }
+);
+gsap.fromTo('.cs-color-token',
+  { opacity: 0, y: 24 },
+  { opacity: 1, y: 0, duration: 0.55, stagger: 0.09, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cs-color-tokens', start: 'top 84%' } }
+);
+gsap.fromTo('.cs-naming-card',
+  { opacity: 0, y: 28 },
+  { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cs-naming-grid', start: 'top 82%' } }
+);
+gsap.fromTo('.cs-type-card',
+  { opacity: 0, y: 28, scale: 0.97 },
+  { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cs-type-grid', start: 'top 82%' } }
+);
+</script>
+</body>
+</html>
