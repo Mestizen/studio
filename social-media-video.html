@@ -703,7 +703,18 @@
     </div>
   </div>
 </section>
-
+<style media="screen">
+.cs-loop-arrow {
+  position: absolute; right: -12px; top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--mint); color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 800; z-index: 2;
+  border: 2px solid var(--white);
+}
+.cs-loop-step:last-child .cs-loop-arrow { display: none; }
+</style>
 <!-- PROCESS -->
 <section id="process">
   <div class="process-header" data-reveal>
@@ -712,19 +723,19 @@
   </div>
   <div class="process-steps">
     <div class="process-step" data-reveal>
-      <div class="step-connector"></div>
+      <div class="cs-loop-arrow">→</div>
       <div class="step-num">01</div>
       <div class="step-title">Discovery Call</div>
       <p class="step-desc">Align on brand voice, content style, video formats, and how you'll deliver footage. We discuss your platforms and goals.</p>
     </div>
     <div class="process-step" data-reveal>
-      <div class="step-connector"></div>
+      <div class="cs-loop-arrow">→</div>
       <div class="step-num">02</div>
       <div class="step-title">You Deliver Footage</div>
       <p class="step-desc">Upload raw videos, notes, and briefs to a shared drive. We handle everything from there — editing, scripting, or both.</p>
     </div>
     <div class="process-step" data-reveal>
-      <div class="step-connector"></div>
+      <div class="cs-loop-arrow">→</div>
       <div class="step-num">03</div>
       <div class="step-title">We Create & Refine</div>
       <p class="step-desc">Edit videos, write scripts, design carousels. One round of revisions included. Delivered within 7 days of receipt.</p>

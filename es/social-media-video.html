@@ -703,7 +703,18 @@
     </div>
   </div>
 </section>
-
+<style media="screen">
+.cs-loop-arrow {
+  position: absolute; right: -12px; top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--mint); color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 800; z-index: 2;
+  border: 2px solid var(--white);
+}
+.cs-loop-step:last-child .cs-loop-arrow { display: none; }
+</style>
 <!-- PROCESS -->
 <section id="process">
   <div class="process-header" data-reveal>
@@ -712,19 +723,19 @@
   </div>
   <div class="process-steps">
     <div class="process-step" data-reveal>
-      <div class="step-connector"></div>
+      <div class="cs-loop-arrow">→</div>
       <div class="step-num">01</div>
       <div class="step-title">Llamada de Descubrimiento</div>
       <p class="step-desc">Alineamos el tono de tu marca, el estilo de contenido, los formatos de video y cómo vas a entregar el material. También revisamos tus plataformas y objetivos.</p>
     </div>
     <div class="process-step" data-reveal>
-      <div class="step-connector"></div>
+      <div class="cs-loop-arrow">→</div>
       <div class="step-num">02</div>
       <div class="step-title">Tú entregas el material</div>
       <p class="step-desc">Subes los videos en bruto, notas y briefings a una carpeta compartida. A partir de ahí, nos encargamos de todo: edición, guiones o ambos.</p>
     </div>
     <div class="process-step" data-reveal>
-      <div class="step-connector"></div>
+      <div class="cs-loop-arrow">→</div>
       <div class="step-num">03</div>
       <div class="step-title">Creamos y Refinamos</div>
       <p class="step-desc">Editamos los videos, escribimos guiones y diseñamos carruseles. Incluye una ronda de revisiones. Entrega en un plazo de 7 días desde la recepción.</p>
