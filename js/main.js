@@ -11,6 +11,80 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+
+/* ── OFF-CANVAS MOBILE NAVIGATION TOGGLE ── */
+/* Add this to js/main.js */
+
+(function initNavToggle() {
+  const navToggle = document.getElementById('navToggle');
+  const navPanel = document.getElementById('navPanel');
+  const navOverlay = document.getElementById('navOverlay');
+
+  // Error check — ensure all nav elements exist
+  if (!navToggle || !navPanel || !navOverlay) {
+    console.error('Nav elements not found. Ensure your HTML has:', {
+      navToggle: 'id="navToggle"',
+      navPanel: 'id="navPanel"',
+      navOverlay: 'id="navOverlay"'
+    });
+    return;
+  }
+
+  /**
+   * Toggle nav panel open/closed state
+   */
+  function toggleNav() {
+    navToggle.classList.toggle('open');
+    navPanel.classList.toggle('open');
+    navOverlay.classList.toggle('open');
+    document.body.style.overflow = navPanel.classList.contains('open') ? 'hidden' : '';
+  }
+
+  /**
+   * Close nav panel
+   */
+  function closeNav() {
+    navToggle.classList.remove('open');
+    navPanel.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Nav scroll effect — shrinks to pill on scroll
+  const button = document.getElementById('navToggle');
+  let isScrolled = false;
+  window.addEventListener('scroll', () => {
+    const shouldShrink = window.scrollY > 60;
+    if (shouldShrink !== isScrolled) {
+      isScrolled = shouldShrink;
+      button.classList.toggle('scrolled', isScrolled);
+    }
+  }, { passive: true });
+
+  // Toggle on hamburger click
+  navToggle.addEventListener('click', toggleNav);
+
+  // Close on overlay click
+  navOverlay.addEventListener('click', toggleNav);
+
+  // Close menu when clicking nav links
+  const navLinks = navPanel.querySelectorAll('.nav-links a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navPanel.classList.contains('open')) {
+      closeNav();
+    }
+  });
+
+  // Optional: Expose toggle function globally (if you need to call it from HTML inline events)
+  window.toggleNav = toggleNav;
+  window.closeNav = closeNav;
+})();
+
 // Back button fades in after hero entrance
  gsap.to('#backBtn', { opacity: 1, duration: 0.5, ease: 'power2.out', delay: 1.0 });
 
