@@ -295,18 +295,45 @@
 </style>
 </head>
 <body>
+  <!-- Mobile Nav Toggle -->
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Off-Canvas Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Off-Canvas Nav Panel -->
+  <div class="nav-panel" id="navPanel">
+    <ul class="nav-links">
+      <li><a href="index.html#about">Acerca de</a></li>
+      <li><a href="index.html#services">Servicios</a></li>
+      <li><a href="index.html#work">Proyectos</a></li>
+      <li><a href="index.html#manifesto">Manifiesto</a></li>
+      <li><a href="../mestizen-build-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s; background-color: #ffffff21;
+      padding: 5px 5px;
+      border-radius: 5px;" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">🧠 AI Case Study →</a></li>
+      <li><a href="../index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">EN</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'}); toggleNav();">Hablemos →</button>
+  </div>
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a href="../index.html"><div class="nav-logo"></div></a>
+  <a href="index.html"><div class="nav-logo"></div></a>
   <ul class="nav-links">
     <li><a href="index.html#about">Acerca de</a></li>
     <li><a href="index.html#services">Servicios</a></li>
     <li><a href="index.html#work">Proyectos</a></li>
     <li><a href="index.html#manifesto">Manifiesto</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:1rem">
-    <a href="../realport-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">EN</a>
+  <div class="left-nav" style="display:flex;align-items:center;gap:1rem">
+    <a href="../mestizen-build-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s; background-color: #ffffff21;
+    padding: 5px 5px;
+    border-radius: 5px;" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">🧠 AI Case Study →</a
+    <a href="../dmg-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">EN</a>
     <button class="nav-cta" onclick="document.getElementById('cs-cta-section').scrollIntoView({behavior:'smooth'})">Hablemos →</button>
   </div>
 </nav>

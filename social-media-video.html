@@ -404,6 +404,189 @@
     }
     .btn-big.ghost:hover { border-color: var(--mint); color: var(--mint); }
 
+    /* ── OFF-CANVAS NAVIGATION ──
+    .nav-toggle {
+      display: none;
+      position: fixed;
+      top: 1.2rem;
+      right: 2rem;
+      z-index: 110;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(0.35rem, 0.35rem);
+      opacity: 1;
+    }
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    .nav-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(0.4rem, -0.4rem);
+      opacity: 1;
+    }
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 38, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 99;
+      animation: fadeIn 0.3s ease;
+    }
+    .nav-overlay.open {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .nav-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 320px;
+      height: 100vh;
+      background: rgba(6, 6, 38, 0.95);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(0, 245, 160, 0.1);
+      z-index: 105;
+      padding: 5rem 2rem 3rem;
+      overflow-y: auto;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-panel.open {
+      right: 0;
+    }
+    .nav-panel .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      list-style: none;
+    }
+    .nav-panel .nav-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.2s;
+      letter-spacing: 0.04em;
+      display: block;
+    }
+    .nav-panel .nav-links a:hover {
+      color: var(--mint);
+      padding-left: 0.5rem;
+    }
+    .nav-panel .nav-cta {
+      margin-top: 2rem;
+      width: 100%;
+      background: var(--mint);
+      color: var(--dark);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-panel .nav-cta:active {
+      transform: scale(0.98);
+    }*/
+
+    /* ── MOBILE-FIRST RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      section { padding: 5rem 2rem; }
+      nav { padding: 1rem 2rem; }
+      #hero { padding: 0 2rem; }
+      #intro, #conversion, .case-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-stats { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .ideal-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      nav .nav-links { display: none; }
+      nav .left-nav { display: none !important; }
+      nav .nav-cta { display: none; }
+      section { padding: 4rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; }
+      #hero { padding: 0 1.5rem; }
+      #intro, #conversion { gap: 2rem; }
+      .intro-stats { grid-template-columns: 1fr; gap: 1rem; }
+      .stat-box { padding: 1.25rem; }
+      .stat-num { font-size: 2rem; }
+      .stat-label { font-size: 0.7rem; }
+      .process-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+      .process-step { position: relative; }
+      .step-connector { display: none; }
+      .ideal-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pricing-card { padding: 2rem 1.5rem; }
+      footer { flex-direction: column; gap: 2rem; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --section-pad: 3.5rem 1rem;
+      }
+      section { padding: 3.5rem 1rem; }
+      nav { padding: 0.8rem 1rem; }
+      #hero { padding: 0 1rem; min-height: 90vh; }
+      .hero-headline { font-size: clamp(2.2rem, 6vw, 4rem); }
+      .hero-sub { font-size: 0.95rem; max-width: 100%; }
+      .scroll-hint { left: 1rem; font-size: 0.65rem; }
+      .marquee-item { font-size: 0.85rem; }
+      .marquee-track { gap: 2rem; }
+      .intro-stats { grid-template-columns: 1fr; }
+      .stat-num { font-size: 1.8rem; }
+      .stat-label { font-size: 0.65rem; }
+      .section-title { font-size: clamp(1.6rem, 4vw, 2.5rem); }
+      .section-label { font-size: 0.7rem; }
+      .process-steps { gap: 1.25rem; }
+      .step-num { font-size: 2.5rem; }
+      .step-title { font-size: 1rem; }
+      .step-desc { font-size: 0.85rem; }
+      .ideal-card h3 { font-size: 1rem; }
+      .ideal-card p { font-size: 0.85rem; }
+      .ideal-card .icon { font-size: 1.5rem; width: 48px; height: 48px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card { padding: 1.75rem 1.25rem; }
+      .pricing-tier { font-size: 0.85rem; }
+      .pricing-amount { font-size: 2.2rem; }
+      .pricing-period { font-size: 0.8rem; }
+      .pricing-item { font-size: 0.85rem; }
+      .pricing-cta { font-size: 0.85rem; padding: 0.65rem 1.2rem; }
+      .cta-headline { font-size: clamp(1.8rem, 5vw, 3rem); }
+      .cta-sub { font-size: 0.95rem; }
+      .cta-actions { flex-direction: column; align-items: stretch; gap: 1rem; }
+      .btn-big { width: 100%; justify-content: center; }
+      footer { padding: 2rem 1rem; gap: 1.5rem; }
+      .footer-brand { font-size: 0.95rem; }
+      .footer-links { gap: 1rem; }
+      .footer-links a { font-size: 0.75rem; }
+      .footer-copy { font-size: 0.65rem; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: #030318; padding: 3rem 4rem;
@@ -457,16 +640,47 @@
 
 <div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- Mobile Nav Toggle -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- Off-Canvas Nav Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Off-Canvas Nav Panel -->
+<div class="nav-panel" id="navPanel">
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#manifesto">Manifesto</a></li>
+    <li><a href="mestizen-build-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s; background-color: #ffffff21;
+    padding: 5px 5px;
+    border-radius: 5px;" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">🧠 AI Case Study →</a></li>
+    <li><a href="es/index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">ES</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'}); toggleNav();">Let's Talk →</button>
+</div>
+
 <!-- NAV -->
 <nav id="mainNav">
   <div class="nav-logo"></div>
   <ul class="nav-links">
-    <li><a href="../../mestizen-studio.html#about">About</a></li>
-    <li><a href="../../mestizen-studio.html#services">Services</a></li>
-    <li><a href="../../mestizen-studio.html#work">Work</a></li>
-    <li><a href="../../mestizen-studio.html#manifesto">Manifesto</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#manifesto">Manifesto</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Let's Talk →</button>
+  <div class="left-nav" style="display:flex;align-items:center;gap:1rem">
+    <a href="mestizen-build-case-study.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s; background-color: #ffffff21;
+    padding: 5px 5px;
+    border-radius: 5px;" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">🧠 AI Case Study →</a>
+    <a href="es/index.html" style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s" onmouseover="this.style.color='var(--mint)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">ES</a>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Let's Talk →</button>
+  </div>
 </nav>
 <!-- FLOATING BACK BUTTON -->
 <a class="back-btn" id="backBtn" href="index.html#work">
@@ -475,6 +689,7 @@
   </svg>
   Back to Work
 </a>
+
 <!-- HERO -->
 <section id="hero">
 
@@ -803,55 +1018,8 @@
   </div>
   <div class="footer-copy">© 2025 Mestizen Studio</div>
 </footer>
+<!-- Main JS -->
 <script src="js/main.js"></script>
-<script>
-  gsap.registerPlugin(ScrollTrigger);
 
-  // Cursor glow
-  const glow = document.getElementById('cursorGlow');
-  document.addEventListener('mousemove', e => {
-    gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.6, ease: 'power2.out' });
-  });
-
-  // Scrolled nav
-  const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // Hero entrance
-  gsap.set(['#heroEyebrow','#heroHeadline','#heroSub','#heroActions'], { opacity: 0, y: 40 });
-  const heroTl = gsap.timeline({ delay: 0.2 });
-  heroTl
-    .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
-    .to('#heroHeadline', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-    .to('#heroSub', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-    .to('#heroActions', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
-
-  // Blob animation
-  gsap.to('.blob', {
-    scale: 1.15, duration: 4,
-    yoyo: true, repeat: -1, ease: 'sine.inOut',
-    stagger: 1.2, transformOrigin: 'center center'
-  });
-
-  // Floating leaves
-  gsap.to('#floatLeaf1', { y: -25, rotation: 8, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-  gsap.to('#floatLeaf2', { y: 20, rotation: -6, duration: 3.5, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.8 });
-
-  // Scroll reveals
-  const reveals = document.querySelectorAll('[data-reveal]');
-  reveals.forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, y: 60 },
-      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 82%', toggleActions: 'play none none none' }
-      }
-    );
-  });
-
-  // CTA glow pulse
-  gsap.to('.cta-glow', { scale: 1.2, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-</script>
 </body>
 </html>
