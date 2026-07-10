@@ -226,6 +226,7 @@ nav.scrolled .nav-cta { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
   nav .nav-links { display: none; }
   nav .nav-cta { display: none; }
   nav .left-nav { margin-right: 4rem; }
+  .back-btn{top: calc(1.2rem + 28px + 1rem + 0.75rem) !important; left: 2.7rem !important;}
 }
 
 @media (max-width: 768px) {
@@ -237,6 +238,7 @@ nav.scrolled .nav-cta { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
 @media (max-width: 640px) {
   .nav-toggle { right: 1rem; top: 0.5rem; }
   .nav-panel { max-width: 280px; }
+  .back-btn{left: 1.5rem !important;}
 }
 
 /* ── BACK BUTTON (floating below nav) ── */
@@ -250,7 +252,7 @@ nav.scrolled .nav-cta { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
      backdrop-filter: blur(12px);
      -webkit-backdrop-filter: blur(12px);
      border: 1px solid rgba(255,255,255,0.18);
-     color: rgba(255,255,255,0.75);
+     color: rgba(0,245,160,0.4);
      font-family: 'Manrope', sans-serif;
      font-size: 0.75rem; font-weight: 700;
      letter-spacing: 0.06em; text-transform: uppercase;
@@ -259,6 +261,7 @@ nav.scrolled .nav-cta { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
      text-decoration: none;
      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
      opacity: 0;
+     box-shadow: 0 0 10px rgba(0, 245, 160, 0.2);
    }
    .back-btn:hover {
      background: rgba(0,245,160,0.15);
