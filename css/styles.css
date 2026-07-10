@@ -233,12 +233,14 @@ nav.scrolled .nav-cta { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
   .nav-toggle { display: flex; }
   nav .nav-links { display: none; }
   nav .nav-cta { display: none; }
+  button.scrolled {right: 3.5rem;}
 }
 
 @media (max-width: 640px) {
   .nav-toggle { right: 1rem; top: 0.5rem; }
   .nav-panel { max-width: 280px; }
   .back-btn{left: 1.5rem !important;}
+  button.scrolled {right: 1.5rem;}
 }
 
 /* ── BACK BUTTON (floating below nav) ── */
